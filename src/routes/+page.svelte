@@ -41,7 +41,7 @@
 		{
 			period: '2019',
 			degree: 'B.F.A. Industrial Design',
-			school: 'University Name'
+			school: 'University of Wisconsin – Stout'
 		}
 	];
 
