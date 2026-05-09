@@ -267,7 +267,7 @@
 				</button>
 
 				<nav class="socials" aria-label="Social links">
-					<a href="https://www.linkedin.com/feed/" target="_blank" rel="noopener noreferrer">
+					<a href="https://www.linkedin.com/in/ben-green-26b63124/" target="_blank" rel="noopener noreferrer">
 						LinkedIn
 					</a>
 					<a href="https://mulligan-labs.com" target="_blank" rel="noopener noreferrer">
