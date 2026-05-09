@@ -47,7 +47,8 @@
 
 	const skills = [
 		'Figma', 'User Research', 'Interaction Design',
-		'Design Systems', 'Prototyping', 'Industrial Design'
+		'Design Systems', 'Prototyping', 'Industrial Design',
+		'Claude Code', 'AI & Design Workflow'
 	];
 
 	const email = 'ben.green0894@gmail.com';
@@ -126,12 +127,6 @@
 		</header>
 
 		<div class="about-grid">
-			<div use:reveal>
-				<blockquote class="pull-quote">
-					"Good design is<br />invisible until<br />it isn't."
-				</blockquote>
-			</div>
-
 			<div class="about-copy">
 				<p use:reveal={{ delay: 80 }}>
 					I'm a product designer with 7 years of industry experience crafting high-quality
@@ -456,21 +451,7 @@
 	}
 
 	.about-grid {
-		display: grid;
-		grid-template-columns: 1fr 1fr;
-		gap: clamp(48px, 8vw, 100px);
-		align-items: start;
-	}
-
-	.pull-quote {
-		font-family: var(--font-display);
-		font-size: clamp(28px, 3.8vw, 50px);
-		font-style: italic;
-		font-weight: 300;
-		line-height: 1.22;
-		letter-spacing: -0.02em;
-		border-left: 3px solid var(--accent);
-		padding-left: 28px;
+		max-width: 720px;
 	}
 
 	.about-copy p {
@@ -860,8 +841,6 @@
 
 	/* ── Responsive ── */
 	@media (max-width: 960px) {
-		.about-grid { grid-template-columns: 1fr; gap: 48px; }
-
 		.proj-grid { grid-template-columns: 1fr 1fr; }
 		.card-1, .card-2, .card-3, .card-4 { grid-column: span 1; }
 
