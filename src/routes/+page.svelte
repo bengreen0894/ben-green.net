@@ -20,81 +20,37 @@
 		return { destroy: () => io.disconnect() };
 	}
 
-	const projects = [
-		{
-			title: 'Clarity Finance',
-			category: 'Fintech · Mobile App',
-			year: '2024',
-			description:
-				'Redesigned the onboarding flow for a personal finance app, reducing drop-off by 40% and lifting account activation across all demographics.',
-			bg: '#D3E2D3',
-			deco: '#2B4A2B'
-		},
-		{
-			title: 'Wellpath',
-			category: 'Health · Web Platform',
-			year: '2023',
-			description:
-				'End-to-end design of a telehealth platform connecting patients with mental health providers — focused on reducing anxiety in the booking experience.',
-			bg: '#D3DAE8',
-			deco: '#2B3556'
-		},
-		{
-			title: 'Folio Books',
-			category: 'E-Commerce · Mobile',
-			year: '2023',
-			description:
-				'Design system and checkout flow for an independent bookshop platform serving 300+ retailers across the UK.',
-			bg: '#E8DDD3',
-			deco: '#4A3020'
-		},
-		{
-			title: 'Stratos',
-			category: 'B2B SaaS · Dashboard',
-			year: '2022',
-			description:
-				'Complete dashboard redesign for a logistics management platform used by 200+ enterprise clients — reducing task completion time by 35%.',
-			bg: '#E8D3DA',
-			deco: '#4A2030'
-		}
-	];
+	import { projects } from '$lib/projects.js';
 
 	const experience = [
 		{
-			period: '2023 – Present',
-			role: 'Senior UX Designer',
-			company: 'Company Name',
-			desc: 'Leading design for the core product experience, managing a design system adopted across five product teams.'
+			period: '2019 – Present',
+			role: 'Senior Experience Designer',
+			company: 'U.S. Bank',
+			desc: 'Designing end-to-end digital banking experiences for consumer and small business, spanning ACH payments, wire transfers, and external account management.'
 		},
 		{
-			period: '2021 – 2023',
-			role: 'UX Designer',
-			company: 'Design Studio',
-			desc: 'Designed digital products for clients in fintech, health, and e-commerce — from research and strategy through to high-fidelity delivery.'
-		},
-		{
-			period: '2019 – 2021',
-			role: 'UI Designer',
-			company: 'Previous Company',
-			desc: 'Created visual design systems and high-fidelity prototypes for mobile-first consumer applications.'
+			period: '2017 – 2019',
+			role: 'UI/UX Designer',
+			company: 'Wolf Appliance',
+			desc: 'Led UI/UX work for the Wolf New-gen E-Series Oven — state machine flows, touchscreen control interfaces, and hardware interaction design.'
 		}
 	];
 
 	const education = [
 		{
 			period: '2019',
-			degree: 'BA Graphic Design',
-			school: 'University Name',
-			note: 'First Class Honours'
+			degree: 'B.F.A. Industrial Design',
+			school: 'University Name'
 		}
 	];
 
 	const skills = [
-		'Figma', 'User Research', 'Prototyping',
-		'Design Systems', 'Usability Testing', 'Information Architecture'
+		'Figma', 'User Research', 'Interaction Design',
+		'Design Systems', 'Prototyping', 'Industrial Design'
 	];
 
-	const email = 'hello@ben-green.net';
+	const email = 'ben.green0894@gmail.com';
 	let copied = false;
 
 	function copyEmail() {
@@ -105,7 +61,7 @@
 </script>
 
 <svelte:head>
-	<title>Ben Green — UX Designer</title>
+	<title>Ben Green — Product Designer</title>
 </svelte:head>
 
 
@@ -116,7 +72,7 @@
 
 	<div class="hero-inner">
 		<div class="hero-text">
-			<p class="hero-label">UX Designer · London</p>
+			<p class="hero-label">Product Designer · St. Paul, MN</p>
 
 			<h1 class="hero-name">
 				<span class="name-solid">Ben</span>
@@ -145,7 +101,7 @@
 					fill="currentColor"
 				>
 					<textPath href="#badge-path">
-						AVAILABLE FOR WORK  ·  UX DESIGN  ·  2025  ·
+						AVAILABLE FOR WORK  ·  PRODUCT DESIGN  ·  2025  ·
 					</textPath>
 				</text>
 			</svg>
@@ -178,15 +134,14 @@
 
 			<div class="about-copy">
 				<p use:reveal={{ delay: 80 }}>
-					I'm a UX designer with 5+ years of experience turning complex problems into
-					clear, usable, and delightful digital products. I work across the full design
-					process — from research and strategy through to high-fidelity design and
-					implementation support.
+					I'm a product designer with 7 years of industry experience crafting high-quality
+					digital products. My background in Industrial Design (B.F.A.) shapes how I approach
+					problems — with structure, systems thinking, and a focus on what's made to last.
 				</p>
 				<p use:reveal={{ delay: 160 }}>
-					I care about the details that make products feel considered: the micro-interaction
-					that confirms an action, the copy that reduces anxiety, the layout that guides
-					without instructing.
+					I care about the details that make products feel considered: the interaction that
+					confirms an action, the information hierarchy that removes cognitive load, the flow
+					that guides without instructing.
 				</p>
 
 				<ul class="skills" use:reveal={{ delay: 240 }}>
@@ -211,10 +166,13 @@
 
 		<div class="proj-grid">
 			{#each projects as p, i}
-				<article
+				<a
+					href={p.comingSoon ? undefined : `/projects/${p.slug}`}
 					class="card card-{i + 1}"
+					class:coming-soon={p.comingSoon}
 					style="--cb:{p.bg};--ca:{p.deco}"
 					use:reveal={{ delay: i * 60 }}
+					aria-label={p.comingSoon ? `${p.title} — coming soon` : `View ${p.title} case study`}
 				>
 					<div class="card-thumb">
 						<div class="card-deco"></div>
@@ -226,9 +184,13 @@
 						</div>
 						<h3 class="card-title">{p.title}</h3>
 						<p class="card-desc">{p.description}</p>
-						<span class="card-cta">View Case Study →</span>
+						{#if !p.comingSoon}
+							<span class="card-cta">View Case Study →</span>
+						{:else}
+							<span class="card-cta soon">Coming Soon</span>
+						{/if}
 					</div>
-				</article>
+				</a>
 			{/each}
 		</div>
 	</div>
@@ -275,7 +237,7 @@
 				{/each}
 
 				<div class="cv-dl" use:reveal={{ delay: 300 }}>
-					<a href="/Ben-Green-CV.pdf" class="btn-dl" download>Download CV ↓</a>
+					<a href="https://drive.google.com/file/d/1-ESIMhM3A65hrUYjK59bL0EBaip_jsH2/view" class="btn-dl" target="_blank" rel="noopener noreferrer">View CV ↓</a>
 				</div>
 			</div>
 		</div>
@@ -305,14 +267,11 @@
 				</button>
 
 				<nav class="socials" aria-label="Social links">
-					<a href="https://linkedin.com/in/bengreen" target="_blank" rel="noopener noreferrer">
+					<a href="https://www.linkedin.com/feed/" target="_blank" rel="noopener noreferrer">
 						LinkedIn
 					</a>
-					<a href="https://dribbble.com/bengreen" target="_blank" rel="noopener noreferrer">
-						Dribbble
-					</a>
-					<a href="https://read.cv/bengreen" target="_blank" rel="noopener noreferrer">
-						Read.cv
+					<a href="https://mulligan-labs.com" target="_blank" rel="noopener noreferrer">
+						Mulligan Labs
 					</a>
 				</nav>
 			</div>
@@ -567,12 +526,20 @@
 	.card-4 { grid-column: span 7; }
 
 	.card {
+		display: block;
 		background: var(--white);
 		border-radius: 3px;
 		overflow: hidden;
 		cursor: pointer;
+		text-decoration: none;
+		color: inherit;
 		transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1),
 		            box-shadow 0.4s ease;
+	}
+
+	.card.coming-soon {
+		cursor: default;
+		pointer-events: none;
 	}
 
 	.card:hover {
@@ -665,6 +632,15 @@
 	.card:hover .card-cta {
 		opacity: 1;
 		transform: none;
+	}
+
+	.card-cta.soon {
+		opacity: 1;
+		transform: none;
+		color: var(--muted);
+		font-style: italic;
+		font-weight: 400;
+		letter-spacing: 0;
 	}
 
 
