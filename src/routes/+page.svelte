@@ -418,18 +418,17 @@
 	.sf-face {
 		position: absolute;
 		inset: 0;
-		background-image: url('/seafarer-texture.png');
-		background-size: cover;
 		backface-visibility: hidden;
 	}
 
-	/* face shading — transparent PNG areas show these colors through */
-	.sf-top    { background-color: #d4c5aa; }
-	.sf-front  { background-color: #c0af93; }
-	.sf-right  { background-color: #c8b89e; }
-	.sf-left   { background-color: #a89880; }
-	.sf-back   { background-color: #a89880; }
-	.sf-bottom { background-color: #968872; }
+	.sf-face::before {
+		content: '';
+		position: absolute;
+		inset: 0;
+		background-image: url('/seafarer-texture.png');
+		background-size: cover;
+		filter: invert(1);
+	}
 
 	.sf-front  { transform: translateZ(calc(var(--sz) / 2)); }
 	.sf-back   { transform: rotateY(180deg) translateZ(calc(var(--sz) / 2)); }
