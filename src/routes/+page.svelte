@@ -236,7 +236,7 @@
 				{/each}
 
 				<div class="cv-dl" use:reveal={{ delay: 300 }}>
-					<a href="https://drive.google.com/file/d/1-ESIMhM3A65hrUYjK59bL0EBaip_jsH2/view" class="btn-dl" target="_blank" rel="noopener noreferrer">View CV ↓</a>
+					<a href="/Ben-Green-UX-Resume-2026.pdf" class="btn-dl" download>Download CV ↓</a>
 				</div>
 			</div>
 		</div>
