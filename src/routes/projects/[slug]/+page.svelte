@@ -68,6 +68,13 @@
 				aria-hidden="true"
 			></iframe>
 		</div>
+		{#if p.siteUrl}
+			<div class="cs-site-link-bar">
+				<a href={p.siteUrl} target="_blank" rel="noopener noreferrer" class="cs-site-link">
+					Visit {p.title} ↗
+				</a>
+			</div>
+		{/if}
 	{:else if p.hero}
 		<div class="cs-hero-img">
 			<img src={p.hero} alt="{p.title} — project overview" />
@@ -282,6 +289,25 @@
 		border: none;
 		pointer-events: none;
 	}
+
+	/* ── Site link bar (below embed) ── */
+	.cs-site-link-bar {
+		border-bottom: 1px solid var(--border);
+		padding: 12px var(--gutter);
+		display: flex;
+		justify-content: flex-end;
+	}
+
+	.cs-site-link {
+		font-size: 12px;
+		font-weight: 700;
+		letter-spacing: 0.08em;
+		text-transform: uppercase;
+		color: var(--muted);
+		transition: color 0.2s;
+	}
+
+	.cs-site-link:hover { color: var(--text); }
 
 	/* ── Hero image ── */
 	.cs-hero-img {

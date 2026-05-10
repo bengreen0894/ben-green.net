@@ -196,6 +196,7 @@ export const projects = [
 		bg: '#D0CCE8',
 		deco: '#2B1F5C',
 		heroEmbed: 'https://mulligan-labs.com/',
+		siteUrl: 'https://mulligan-labs.com/',
 		comingSoon: false,
 		role: 'Designer & Co-founder',
 		team: '707 Labs',
