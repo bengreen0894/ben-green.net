@@ -170,7 +170,11 @@
 					aria-label={p.comingSoon ? `${p.title} — coming soon` : `View ${p.title} case study`}
 				>
 					<div class="card-thumb">
-						<div class="card-deco"></div>
+						{#if p.hero}
+							<img class="card-thumb-img" src={p.hero} alt="" aria-hidden="true" />
+						{:else}
+							<div class="card-deco"></div>
+						{/if}
 					</div>
 					<div class="card-body">
 						<div class="card-meta">
@@ -535,6 +539,19 @@
 		align-items: center;
 		justify-content: center;
 		overflow: hidden;
+	}
+
+	.card-thumb-img {
+		width: 100%;
+		height: 100%;
+		object-fit: cover;
+		object-position: center top;
+		display: block;
+		transition: transform 0.55s cubic-bezier(0.22, 1, 0.36, 1);
+	}
+
+	.card:hover .card-thumb-img {
+		transform: scale(1.04);
 	}
 
 	.card-deco {
