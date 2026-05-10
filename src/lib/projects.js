@@ -195,6 +195,7 @@ export const projects = [
 			'Designed and co-built a real-time multiplayer Commander (EDH) deck testing platform integrating with Scryfall, Archidekt, and MTGGoldfish.',
 		bg: '#D0CCE8',
 		deco: '#2B1F5C',
+		hero: '/images/ml-landing.jpeg',
 		comingSoon: false,
 		role: 'Designer & Co-founder',
 		team: '707 Labs',
@@ -211,6 +212,12 @@ export const projects = [
 					{ value: '3', label: 'deck import integrations' },
 					{ value: '2024', label: 'launched under 707 Labs' }
 				]
+			},
+			{
+				type: 'image',
+				src: '/images/ml-lobby.jpeg',
+				alt: 'Mulligan Labs game lobby — room settings and deck selection',
+				caption: 'Game lobby: room settings, player slots, and deck import — all before the first card is drawn'
 			},
 			{
 				type: 'prose',
