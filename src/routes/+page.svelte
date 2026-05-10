@@ -83,7 +83,7 @@
 			<div class="hero-rule"></div>
 
 			<p class="hero-tagline">
-				Crafting digital products<br />that feel inevitable.
+				Solving<br />Exploring<br />Creating
 			</p>
 		</div>
 
@@ -392,13 +392,15 @@
 	/* ── Seafarer cube ── */
 	.hero-badge {
 		flex-shrink: 0;
-		width: clamp(140px, 16vw, 220px);
-		height: clamp(140px, 16vw, 220px);
+		width: clamp(161px, 18.4vw, 253px);
+		height: clamp(161px, 18.4vw, 253px);
 		display: flex;
 		align-items: center;
 		justify-content: center;
 		border-radius: 50%;
-		border: 1px solid var(--text);
+		background: var(--accent);
+		outline: 1px solid var(--accent);
+		outline-offset: 8px;
 		margin-right: clamp(24px, 9vw, 140px);
 		animation: fadeIn 1s ease 0.7s both;
 	}
@@ -430,7 +432,6 @@
 		inset: 0;
 		background-image: url('/seafarer-texture.png');
 		background-size: cover;
-		filter: invert(1);
 	}
 
 	.sf-front  { transform: translateZ(calc(var(--sz) / 2)); }
