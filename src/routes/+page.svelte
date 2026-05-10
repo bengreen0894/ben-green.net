@@ -83,30 +83,21 @@
 			<div class="hero-rule"></div>
 
 			<p class="hero-tagline">
-				Crafting digital products<br />that feel inevitable.
+				Solving<br />Exploring<br />Creating
 			</p>
 		</div>
 
-		<div class="hero-badge" aria-label="Available for work">
-			<svg viewBox="0 0 120 120" class="badge-svg" aria-hidden="true">
-				<path
-					id="badge-path"
-					d="M60,60 m-44,0 a44,44 0 1,1 88,0 a44,44 0 1,1 -88,0"
-					fill="none"
-				/>
-				<text
-					font-size="9.5"
-					font-family="Syne, sans-serif"
-					font-weight="600"
-					letter-spacing="3.5"
-					fill="currentColor"
-				>
-					<textPath href="#badge-path">
-						AVAILABLE FOR WORK  ·  PRODUCT DESIGN  ·  2025  ·
-					</textPath>
-				</text>
-			</svg>
-			<span class="badge-star" aria-hidden="true">✦</span>
+		<div class="hero-badge" aria-hidden="true">
+			<div class="sf-scene">
+				<div class="sf-cube">
+					<div class="sf-face sf-front"></div>
+					<div class="sf-face sf-back"></div>
+					<div class="sf-face sf-left"></div>
+					<div class="sf-face sf-right"></div>
+					<div class="sf-face sf-top"></div>
+					<div class="sf-face sf-bottom"></div>
+				</div>
+			</div>
 		</div>
 	</div>
 
@@ -170,7 +161,11 @@
 					aria-label={p.comingSoon ? `${p.title} — coming soon` : `View ${p.title} case study`}
 				>
 					<div class="card-thumb">
-						<div class="card-deco"></div>
+						{#if p.hero}
+							<img class="card-thumb-img" src={p.hero} alt="" aria-hidden="true" />
+						{:else}
+							<div class="card-deco"></div>
+						{/if}
 					</div>
 					<div class="card-body">
 						<div class="card-meta">
@@ -232,7 +227,7 @@
 				{/each}
 
 				<div class="cv-dl" use:reveal={{ delay: 300 }}>
-					<a href="https://drive.google.com/file/d/1-ESIMhM3A65hrUYjK59bL0EBaip_jsH2/view" class="btn-dl" target="_blank" rel="noopener noreferrer">View CV ↓</a>
+					<a href="/Ben-Green-UX-Resume-2026.pdf" class="btn-dl" download>Download CV ↓</a>
 				</div>
 			</div>
 		</div>
@@ -394,32 +389,61 @@
 		animation: fadeUp 0.9s ease 0.45s both;
 	}
 
-	/* Rotating badge */
+	/* ── Seafarer cube ── */
 	.hero-badge {
 		flex-shrink: 0;
-		width: clamp(104px, 13vw, 156px);
-		height: clamp(104px, 13vw, 156px);
-		color: var(--muted);
-		position: relative;
+		width: clamp(161px, 18.4vw, 253px);
+		height: clamp(161px, 18.4vw, 253px);
 		display: flex;
 		align-items: center;
 		justify-content: center;
+		border-radius: 50%;
+		background: var(--accent);
+		outline: 1px solid var(--accent);
+		outline-offset: 8px;
+		margin-right: clamp(24px, 9vw, 140px);
 		animation: fadeIn 1s ease 0.7s both;
 	}
 
-	.badge-svg {
-		position: absolute;
-		inset: 0;
-		width: 100%;
-		height: 100%;
-		animation: spin 22s linear infinite;
+	.sf-scene {
+		--sz: clamp(88px, 10vw, 130px);
+		perspective: 560px;
+		width: var(--sz);
+		height: var(--sz);
 	}
 
-	.badge-star {
-		font-size: 22px;
-		color: var(--accent);
+	.sf-cube {
+		width: 100%;
+		height: 100%;
 		position: relative;
-		z-index: 1;
+		transform-style: preserve-3d;
+		animation: sf-spin 7s linear infinite;
+	}
+
+	.sf-face {
+		position: absolute;
+		inset: 0;
+		backface-visibility: hidden;
+	}
+
+	.sf-face::before {
+		content: '';
+		position: absolute;
+		inset: 0;
+		background-image: url('/seafarer-texture.png');
+		background-size: cover;
+	}
+
+	.sf-front  { transform: translateZ(calc(var(--sz) / 2)); }
+	.sf-back   { transform: rotateY(180deg) translateZ(calc(var(--sz) / 2)); }
+	.sf-left   { transform: rotateY(-90deg) translateZ(calc(var(--sz) / 2)); }
+	.sf-right  { transform: rotateY( 90deg) translateZ(calc(var(--sz) / 2)); }
+	.sf-top    { transform: rotateX( 90deg) translateZ(calc(var(--sz) / 2)); }
+	.sf-bottom { transform: rotateX(-90deg) translateZ(calc(var(--sz) / 2)); }
+
+	@keyframes sf-spin {
+		from { transform: rotateX(-35deg) rotateY(  0deg); }
+		to   { transform: rotateX(-35deg) rotateY(360deg); }
 	}
 
 	.scroll-cue {
@@ -535,6 +559,19 @@
 		align-items: center;
 		justify-content: center;
 		overflow: hidden;
+	}
+
+	.card-thumb-img {
+		width: 100%;
+		height: 100%;
+		object-fit: cover;
+		object-position: center top;
+		display: block;
+		transition: transform 0.55s cubic-bezier(0.22, 1, 0.36, 1);
+	}
+
+	.card:hover .card-thumb-img {
+		transform: scale(1.04);
 	}
 
 	.card-deco {

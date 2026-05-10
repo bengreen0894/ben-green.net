@@ -5,6 +5,37 @@
 	let scrolled = false;
 	let menuOpen = false;
 
+	let cursorEl;
+
+	onMount(() => {
+		const move = (e) => {
+			cursorEl.style.left = e.clientX + 'px';
+			cursorEl.style.top  = e.clientY + 'px';
+		};
+		const over = (e) => {
+			if (e.target.closest('a, button, [role="button"]')) cursorEl.classList.add('is-hover');
+		};
+		const out = (e) => {
+			if (e.target.closest('a, button, [role="button"]')) cursorEl.classList.remove('is-hover');
+		};
+		const hide = () => { cursorEl.style.opacity = '0'; };
+		const show = () => { cursorEl.style.opacity = '1'; };
+
+		window.addEventListener('mousemove', move);
+		document.addEventListener('mouseover', over);
+		document.addEventListener('mouseout', out);
+		document.addEventListener('mouseleave', hide);
+		document.addEventListener('mouseenter', show);
+
+		return () => {
+			window.removeEventListener('mousemove', move);
+			document.removeEventListener('mouseover', over);
+			document.removeEventListener('mouseout', out);
+			document.removeEventListener('mouseleave', hide);
+			document.removeEventListener('mouseenter', show);
+		};
+	});
+
 	onMount(() => {
 		const onScroll = () => { scrolled = window.scrollY > 48; };
 		window.addEventListener('scroll', onScroll, { passive: true });
@@ -18,6 +49,8 @@
 		{ href: '#contact',  label: 'Contact'  }
 	];
 </script>
+
+<div class="cursor" bind:this={cursorEl} aria-hidden="true"></div>
 
 <nav class:scrolled>
 	<div class="inner">
@@ -49,6 +82,29 @@
 <slot />
 
 <style>
+	:global(*, *::before, *::after) { cursor: none !important; }
+
+	.cursor {
+		position: fixed;
+		left: -40px;
+		top: -40px;
+		width: 10px;
+		height: 10px;
+		background: var(--accent);
+		border-radius: 50%;
+		pointer-events: none;
+		z-index: 9999;
+		transform: translate(-50%, -50%);
+		transition: width 0.18s ease, height 0.18s ease, background 0.18s ease, border 0.18s ease;
+	}
+
+	.cursor.is-hover {
+		width: 28px;
+		height: 28px;
+		background: transparent;
+		border: 1.5px solid var(--accent);
+	}
+
 	nav {
 		position: fixed;
 		inset: 0 0 auto;
