@@ -42,13 +42,19 @@
 		<p class="cs-lead">{p.description}</p>
 	</header>
 
-	<!-- ── Color hero block ── -->
-	<div class="cs-hero-block" style="background:{p.bg}">
-		<div class="cs-hero-inner">
-			<div class="cs-hero-ring" style="border-color:{p.deco}"></div>
-			<div class="cs-hero-square" style="border-color:{p.deco}"></div>
+	<!-- ── Hero ── -->
+	{#if p.hero}
+		<div class="cs-hero-img">
+			<img src={p.hero} alt="{p.title} — project overview" />
 		</div>
-	</div>
+	{:else}
+		<div class="cs-hero-block" style="background:{p.bg}">
+			<div class="cs-hero-inner">
+				<div class="cs-hero-ring" style="border-color:{p.deco}"></div>
+				<div class="cs-hero-square" style="border-color:{p.deco}"></div>
+			</div>
+		</div>
+	{/if}
 
 	<!-- ── Metadata strip ── -->
 	<div class="cs-strip">
@@ -233,7 +239,22 @@
 		max-width: 640px;
 	}
 
-	/* ── Hero color block ── */
+	/* ── Hero image ── */
+	.cs-hero-img {
+		width: 100%;
+		max-height: clamp(320px, 45vw, 600px);
+		overflow: hidden;
+	}
+
+	.cs-hero-img img {
+		width: 100%;
+		height: 100%;
+		object-fit: cover;
+		object-position: center top;
+		display: block;
+	}
+
+	/* ── Hero color block (fallback) ── */
 	.cs-hero-block {
 		width: 100%;
 		height: clamp(280px, 40vw, 520px);

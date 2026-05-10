@@ -9,6 +9,7 @@ export const projects = [
 			'End-to-end redesign of the external transfers experience for web and mobile — replacing a legacy vendor product with an in-house solution serving millions of customers.',
 		bg: '#CAD5EA',
 		deco: '#1B3A5C',
+		hero: '/images/et-hero.jpg',
 		comingSoon: false,
 		role: 'Senior Experience Designer',
 		team: 'U.S. Bank Digital',
@@ -25,12 +26,6 @@ export const projects = [
 					{ value: '2', label: 'platforms — responsive web & adaptive mobile' },
 					{ value: '+85%', label: 'DIY transfer completion rates post-launch' }
 				]
-			},
-			{
-				type: 'image',
-				src: '/images/et-hero.jpg',
-				alt: 'External Transfers — web and mobile UI mockups',
-				caption: 'Final designs across responsive web and native mobile'
 			},
 			{
 				type: 'prose',
@@ -106,6 +101,7 @@ export const projects = [
 			'Designed the small business ACH payments flow for web and mobile, streamlining how business owners pay vendors, contractors, and employees.',
 		bg: '#C8DDE0',
 		deco: '#1A3840',
+		hero: '/images/ach-hero.png',
 		comingSoon: false,
 		role: 'Senior Experience Designer',
 		team: 'U.S. Bank Digital',
@@ -122,12 +118,6 @@ export const projects = [
 					{ value: 'n=5', label: 'small business owners in moderated usability study' },
 					{ value: '2', label: 'major releases designed end-to-end' }
 				]
-			},
-			{
-				type: 'image',
-				src: '/images/ach-hero.png',
-				alt: 'ACH Payments — web and mobile UI mockups',
-				caption: 'Final designs across responsive web and native mobile'
 			},
 			{
 				type: 'prose',
