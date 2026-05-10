@@ -397,6 +397,9 @@
 		display: flex;
 		align-items: center;
 		justify-content: center;
+		border-radius: 50%;
+		border: 1px solid var(--text);
+		margin-right: clamp(24px, 9vw, 140px);
 		animation: fadeIn 1s ease 0.7s both;
 	}
 
