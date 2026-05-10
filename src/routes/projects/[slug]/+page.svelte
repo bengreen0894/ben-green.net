@@ -43,7 +43,17 @@
 	</header>
 
 	<!-- ── Hero ── -->
-	{#if p.hero}
+	{#if p.heroEmbed}
+		<div class="cs-hero-embed">
+			<iframe
+				src={p.heroEmbed}
+				title="{p.title} — live preview"
+				scrolling="no"
+				tabindex="-1"
+				aria-hidden="true"
+			></iframe>
+		</div>
+	{:else if p.hero}
 		<div class="cs-hero-img">
 			<img src={p.hero} alt="{p.title} — project overview" />
 		</div>
@@ -237,6 +247,34 @@
 		line-height: 1.6;
 		color: var(--muted);
 		max-width: 640px;
+	}
+
+	/* ── Hero embed (live iframe) ── */
+	.cs-hero-embed {
+		width: 100%;
+		height: clamp(260px, 32vw, 420px);
+		overflow: hidden;
+		position: relative;
+	}
+
+	.cs-hero-embed::after {
+		content: '';
+		position: absolute;
+		inset: 0;
+		background: linear-gradient(to bottom, transparent 40%, rgba(0, 0, 0, 0.9) 88%);
+		pointer-events: none;
+	}
+
+	.cs-hero-embed iframe {
+		position: absolute;
+		top: 0;
+		left: 50%;
+		width: 1440px;
+		height: 900px;
+		transform: translateX(-50%) scale(1.25);
+		transform-origin: top center;
+		border: none;
+		pointer-events: none;
 	}
 
 	/* ── Hero image ── */

@@ -195,7 +195,7 @@ export const projects = [
 			'Designed and co-built a real-time multiplayer Commander (EDH) deck testing platform integrating with Scryfall, Archidekt, and MTGGoldfish.',
 		bg: '#D0CCE8',
 		deco: '#2B1F5C',
-		hero: '/images/ml-landing.jpeg',
+		heroEmbed: 'https://mulligan-labs.com/',
 		comingSoon: false,
 		role: 'Designer & Co-founder',
 		team: '707 Labs',
