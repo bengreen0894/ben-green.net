@@ -1,4 +1,6 @@
 <script>
+	import { onMount } from 'svelte';
+
 	/** @type {import('svelte/action').Action<HTMLElement, {delay?: number, y?: number}>} */
 	function reveal(node, { delay = 0, y = 28 } = {}) {
 		node.style.opacity = '0';
@@ -20,6 +22,18 @@
 
 	export let data;
 	$: p = data.project;
+
+	let embedRef;
+	let embedScale = 1;
+
+	onMount(() => {
+		if (!embedRef) return;
+		const update = () => { embedScale = embedRef.clientWidth / 1440; };
+		update();
+		const ro = new ResizeObserver(update);
+		ro.observe(embedRef);
+		return () => ro.disconnect();
+	});
 </script>
 
 <svelte:head>
@@ -44,9 +58,10 @@
 
 	<!-- ── Hero ── -->
 	{#if p.heroEmbed}
-		<div class="cs-hero-embed">
+		<div class="cs-hero-embed" bind:this={embedRef}>
 			<iframe
 				src={p.heroEmbed}
+				style="transform: scale({embedScale})"
 				title="{p.title} — live preview"
 				scrolling="no"
 				tabindex="-1"
@@ -252,27 +267,18 @@
 	/* ── Hero embed (live iframe) ── */
 	.cs-hero-embed {
 		width: 100%;
-		height: clamp(260px, 32vw, 420px);
+		aspect-ratio: 1440 / 900;
 		overflow: hidden;
 		position: relative;
-	}
-
-	.cs-hero-embed::after {
-		content: '';
-		position: absolute;
-		inset: 0;
-		background: linear-gradient(to bottom, transparent 40%, rgba(0, 0, 0, 0.9) 88%);
-		pointer-events: none;
 	}
 
 	.cs-hero-embed iframe {
 		position: absolute;
 		top: 0;
-		left: 50%;
+		left: 0;
 		width: 1440px;
 		height: 900px;
-		transform: translateX(-50%) scale(1.25);
-		transform-origin: top center;
+		transform-origin: top left;
 		border: none;
 		pointer-events: none;
 	}
