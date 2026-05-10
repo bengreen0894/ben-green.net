@@ -438,8 +438,8 @@
 	.sf-bottom { transform: rotateX(-90deg) translateZ(calc(var(--sz) / 2)); }
 
 	@keyframes sf-spin {
-		from { transform: rotateX(35deg) rotateY(  0deg); }
-		to   { transform: rotateX(35deg) rotateY(360deg); }
+		from { transform: rotateX(-35deg) rotateY(  0deg); }
+		to   { transform: rotateX(-35deg) rotateY(360deg); }
 	}
 
 	.scroll-cue {
