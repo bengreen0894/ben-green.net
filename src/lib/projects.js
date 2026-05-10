@@ -27,6 +27,12 @@ export const projects = [
 				]
 			},
 			{
+				type: 'image',
+				src: '/images/et-hero.jpg',
+				alt: 'External Transfers — web and mobile UI mockups',
+				caption: 'Final designs across responsive web and native mobile'
+			},
+			{
 				type: 'prose',
 				label: 'Challenge',
 				text: "The Fiserv partnership was planned to sunset, leaving no external transfer capability for millions of customers. The legacy tool was desktop-only and full of friction. The brief called for a seamless experience to quickly move funds between U.S. Bank and outside financial institutions — with a strategic push from design leadership to merge the product with Internal Transfers for a one-stop money-movement hub. I was design lead alongside one junior designer, with content strategy shared across team resources."
@@ -34,6 +40,12 @@ export const projects = [
 			{
 				type: 'pullquote',
 				text: 'Just after viewing balances, transferring funds is the 2nd most common task for our digital customers.'
+			},
+			{
+				type: 'image',
+				src: '/images/et-concepts.png',
+				alt: 'Two concept directions for the External Transfers flow',
+				caption: 'Concept A vs. Concept B — tested before committing to a direction'
 			},
 			{
 				type: 'process',
@@ -62,9 +74,21 @@ export const projects = [
 				]
 			},
 			{
+				type: 'image',
+				src: '/images/et-landing.png',
+				alt: 'External Transfers landing page — mobile and desktop',
+				caption: 'The landing page solution — organizing money movement around customer mental models'
+			},
+			{
 				type: 'callout',
 				label: 'Key Insight',
 				text: "Navigation was the top pain point — users on mobile had to scan an overwhelming native sheet menu to find external transfers. The solution was a purpose-built landing page that organized the entire money movement portfolio around customer mental models, not internal product siloes. It was approved in design review and shipped as part of the MVP."
+			},
+			{
+				type: 'image',
+				src: '/images/et-design-system.png',
+				alt: 'Design system contribution — radio row with icon component',
+				caption: 'The "radio row with icon" component contributed to the design system, fully adopted org-wide by 2023'
 			},
 			{
 				type: 'prose',
@@ -100,9 +124,21 @@ export const projects = [
 				]
 			},
 			{
+				type: 'image',
+				src: '/images/ach-hero.png',
+				alt: 'ACH Payments — web and mobile UI mockups',
+				caption: 'Final designs across responsive web and native mobile'
+			},
+			{
 				type: 'prose',
 				label: 'Challenge',
 				text: "ACH payments live in a crowded space — customers already have Zelle, Venmo, checks, and wire transfers available. The brief was to make a platform that was reliable, clear, and flexible enough for real business needs. Before design kicked off, a key question had to be answered: why would a small business owner choose ACH over Zelle? The answer was higher transfer limits, tighter fraud controls via FTE enrollment, and flexibility for payees who don't share a bank account."
+			},
+			{
+				type: 'image',
+				src: '/images/ach-slide3.png',
+				alt: 'Why ACH? — comparison with Zelle and bills pay',
+				caption: 'Positioning ACH for small business: higher limits, tighter fraud controls, no shared-bank requirement'
 			},
 			{
 				type: 'process',
@@ -131,9 +167,27 @@ export const projects = [
 				]
 			},
 			{
+				type: 'image',
+				src: '/images/ach-slide5.png',
+				alt: 'Research and user testing — recipient management screen',
+				caption: 'Remote moderated usability study with 5 small business owners using an InVision prototype'
+			},
+			{
 				type: 'callout',
 				label: 'Test Results',
 				text: "Users found the flow easy and intuitive — navigation from the 'External Transfers, Wires & ACH' landing page worked well, and repeat setups were faster. The main friction was setting up payments one at a time; small business owners wanted batch efficiency. The $1 processing fee was flagged as a deterrent, and the product team committed to working with the business line to reduce or remove it."
+			},
+			{
+				type: 'image',
+				src: '/images/ach-slide8.png',
+				alt: 'Test results — what worked and what needed improvement',
+				caption: 'Study findings: strong navigation and repeat-setup performance, friction around single-payment limitation'
+			},
+			{
+				type: 'image',
+				src: '/images/ach-slide9.png',
+				alt: 'Responding to results — multi-pay concept UI',
+				caption: 'Multi-pay (batch up to 5 recipients) designed and prioritized for release 2 based on study feedback'
 			},
 			{
 				type: 'prose',

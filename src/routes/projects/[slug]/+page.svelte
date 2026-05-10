@@ -134,6 +134,16 @@
 						</section>
 					</div>
 
+				{:else if sec.type === 'image'}
+					<div class="container" use:reveal={{ delay: 60 }}>
+						<figure class="sec-image" class:full-bleed={sec.fullBleed}>
+							<img src={sec.src} alt={sec.alt ?? ''} loading="lazy" />
+							{#if sec.caption}
+								<figcaption>{sec.caption}</figcaption>
+							{/if}
+						</figure>
+					</div>
+
 				{/if}
 
 			{/each}
@@ -467,6 +477,28 @@
 	.callout-card p {
 		font-size: 16px;
 		line-height: 1.75;
+	}
+
+	/* ── Image ── */
+	.sec-image {
+		margin: clamp(48px, 6vw, 80px) 0;
+		border-radius: 6px;
+		overflow: hidden;
+	}
+
+	.sec-image img {
+		width: 100%;
+		height: auto;
+		display: block;
+		border-radius: 6px;
+	}
+
+	.sec-image figcaption {
+		margin-top: 12px;
+		font-size: 13px;
+		color: var(--muted);
+		text-align: center;
+		font-style: italic;
 	}
 
 	/* ── Placeholder ── */
