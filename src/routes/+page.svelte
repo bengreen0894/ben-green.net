@@ -418,20 +418,12 @@
 	.sf-face {
 		position: absolute;
 		inset: 0;
-		backface-visibility: hidden;
-		overflow: hidden;
-	}
-
-	.sf-face::after {
-		content: '';
-		position: absolute;
-		inset: 0;
 		background-image: url('/seafarer-texture.png');
 		background-size: cover;
-		opacity: 0.18;
+		backface-visibility: hidden;
 	}
 
-	/* face shading for depth — light source from top-right */
+	/* face shading — transparent PNG areas show these colors through */
 	.sf-top    { background-color: #d4c5aa; }
 	.sf-front  { background-color: #c0af93; }
 	.sf-right  { background-color: #c8b89e; }
@@ -447,8 +439,8 @@
 	.sf-bottom { transform: rotateX(-90deg) translateZ(calc(var(--sz) / 2)); }
 
 	@keyframes sf-spin {
-		from { transform: rotateX(26deg) rotateY(  0deg); }
-		to   { transform: rotateX(26deg) rotateY(360deg); }
+		from { transform: rotateX(35deg) rotateY(  0deg); }
+		to   { transform: rotateX(35deg) rotateY(360deg); }
 	}
 
 	.scroll-cue {
