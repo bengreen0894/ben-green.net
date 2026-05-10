@@ -87,26 +87,8 @@
 			</p>
 		</div>
 
-		<div class="hero-badge" aria-label="Available for work">
-			<svg viewBox="0 0 120 120" class="badge-svg" aria-hidden="true">
-				<path
-					id="badge-path"
-					d="M60,60 m-44,0 a44,44 0 1,1 88,0 a44,44 0 1,1 -88,0"
-					fill="none"
-				/>
-				<text
-					font-size="9.5"
-					font-family="Syne, sans-serif"
-					font-weight="600"
-					letter-spacing="3.5"
-					fill="currentColor"
-				>
-					<textPath href="#badge-path">
-						AVAILABLE FOR WORK  ·  PRODUCT DESIGN  ·  2025  ·
-					</textPath>
-				</text>
-			</svg>
-			<span class="badge-star" aria-hidden="true">✦</span>
+		<div class="hero-badge" aria-label="Seafarer">
+			<img src="/seafarer.gif" alt="Seafarer" class="seafarer-gif" />
 		</div>
 	</div>
 
@@ -398,32 +380,22 @@
 		animation: fadeUp 0.9s ease 0.45s both;
 	}
 
-	/* Rotating badge */
+	/* Seafarer badge */
 	.hero-badge {
 		flex-shrink: 0;
-		width: clamp(104px, 13vw, 156px);
-		height: clamp(104px, 13vw, 156px);
-		color: var(--muted);
-		position: relative;
-		display: flex;
-		align-items: center;
-		justify-content: center;
+		width: clamp(140px, 16vw, 220px);
+		height: clamp(140px, 16vw, 220px);
+		overflow: hidden;
 		animation: fadeIn 1s ease 0.7s both;
 	}
 
-	.badge-svg {
-		position: absolute;
-		inset: 0;
+	.seafarer-gif {
 		width: 100%;
 		height: 100%;
-		animation: spin 22s linear infinite;
-	}
-
-	.badge-star {
-		font-size: 22px;
-		color: var(--accent);
-		position: relative;
-		z-index: 1;
+		object-fit: contain;
+		display: block;
+		transform: scale(3);
+		transform-origin: center;
 	}
 
 	.scroll-cue {
