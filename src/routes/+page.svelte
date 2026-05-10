@@ -87,8 +87,17 @@
 			</p>
 		</div>
 
-		<div class="hero-badge" aria-label="Seafarer">
-			<img src="/seafarer.gif" alt="Seafarer" class="seafarer-gif" />
+		<div class="hero-badge" aria-hidden="true">
+			<div class="sf-scene">
+				<div class="sf-cube">
+					<div class="sf-face sf-front"></div>
+					<div class="sf-face sf-back"></div>
+					<div class="sf-face sf-left"></div>
+					<div class="sf-face sf-right"></div>
+					<div class="sf-face sf-top"></div>
+					<div class="sf-face sf-bottom"></div>
+				</div>
+			</div>
 		</div>
 	</div>
 
@@ -380,22 +389,66 @@
 		animation: fadeUp 0.9s ease 0.45s both;
 	}
 
-	/* Seafarer badge */
+	/* ── Seafarer cube ── */
 	.hero-badge {
 		flex-shrink: 0;
 		width: clamp(140px, 16vw, 220px);
 		height: clamp(140px, 16vw, 220px);
-		overflow: hidden;
+		display: flex;
+		align-items: center;
+		justify-content: center;
 		animation: fadeIn 1s ease 0.7s both;
 	}
 
-	.seafarer-gif {
+	.sf-scene {
+		--sz: clamp(88px, 10vw, 130px);
+		perspective: 560px;
+		width: var(--sz);
+		height: var(--sz);
+	}
+
+	.sf-cube {
 		width: 100%;
 		height: 100%;
-		object-fit: contain;
-		display: block;
-		transform: scale(3);
-		transform-origin: center;
+		position: relative;
+		transform-style: preserve-3d;
+		animation: sf-spin 7s linear infinite;
+	}
+
+	.sf-face {
+		position: absolute;
+		inset: 0;
+		backface-visibility: hidden;
+		overflow: hidden;
+	}
+
+	.sf-face::after {
+		content: '';
+		position: absolute;
+		inset: 0;
+		background-image: url('/seafarer-texture.png');
+		background-size: cover;
+		opacity: 0.18;
+	}
+
+	/* face shading for depth — light source from top-right */
+	.sf-top    { background-color: #d4c5aa; }
+	.sf-front  { background-color: #c0af93; }
+	.sf-right  { background-color: #c8b89e; }
+	.sf-left   { background-color: #a89880; }
+	.sf-back   { background-color: #a89880; }
+	.sf-bottom { background-color: #968872; }
+
+	.sf-front  { transform: translateZ(calc(var(--sz) / 2)); }
+	.sf-back   { transform: rotateY(180deg) translateZ(calc(var(--sz) / 2)); }
+	.sf-left   { transform: rotateY(-90deg) translateZ(calc(var(--sz) / 2)); }
+	.sf-right  { transform: rotateY( 90deg) translateZ(calc(var(--sz) / 2)); }
+	.sf-top    { transform: rotateX( 90deg) translateZ(calc(var(--sz) / 2)); }
+	.sf-bottom { transform: rotateX(-90deg) translateZ(calc(var(--sz) / 2)); }
+
+	@keyframes sf-spin {
+		from { transform: rotateX(26deg) rotateY(  0deg); }
+		to   { transform: rotateX(26deg) rotateY(360deg); }
 	}
 
 	.scroll-cue {
