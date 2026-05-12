@@ -30,6 +30,12 @@
 			desc: 'Designing end-to-end digital banking experiences for consumer and small business, spanning ACH payments, wire transfers, and external account management.'
 		},
 		{
+			period: '2025 – Present',
+			role: 'Co-founder & Principal Designer',
+			company: '707 Labs L.L.C.',
+			desc: 'Building software solutions with my friend and co-founding architect; 707 Labs aims to build extremely high quality experiences on the web.'
+		},
+		{
 			period: '2017 – 2019',
 			role: 'UI/UX Designer',
 			company: 'Wolf Appliance',
@@ -45,12 +51,6 @@
 		}
 	];
 
-	const skills = [
-		'Figma', 'User Research', 'Interaction Design',
-		'Design Systems', 'Prototyping', 'Industrial Design',
-		'Claude Code', 'AI & Design Workflow'
-	];
-
 	const email = 'ben.green0894@gmail.com';
 	let copied = false;
 
@@ -62,7 +62,7 @@
 </script>
 
 <svelte:head>
-	<title>Ben Green — Product Designer</title>
+	<title>Ben Green — Sr. Experience Designer</title>
 </svelte:head>
 
 
@@ -73,7 +73,7 @@
 
 	<div class="hero-inner">
 		<div class="hero-text">
-			<p class="hero-label">Product Designer · St. Paul, MN</p>
+			<p class="hero-label">Sr. Experience Designer &amp; Vibe Coder — St. Paul, MN</p>
 
 			<h1 class="hero-name">
 				<span class="name-solid">Ben</span>
@@ -120,21 +120,16 @@
 		<div class="about-grid">
 			<div class="about-copy">
 				<p use:reveal={{ delay: 80 }}>
-					I'm a product designer with 7 years of industry experience crafting high-quality
+					I'm a product designer with 8 years of industry experience crafting high-quality
 					digital products. My background in Industrial Design (B.F.A.) shapes how I approach
 					problems — with structure, systems thinking, and a focus on what's made to last.
 				</p>
 				<p use:reveal={{ delay: 160 }}>
-					I care about the details that make products feel considered: the interaction that
-					confirms an action, the information hierarchy that removes cognitive load, the flow
-					that guides without instructing.
+					I've fully leaned into emerging tools — using AI-assisted workflows to build components,
+					shape design systems, and ship complete products. Closing the gap between design and
+					code makes me a more precise designer and a faster collaborator.
 				</p>
 
-				<ul class="skills" use:reveal={{ delay: 240 }}>
-					{#each skills as s}
-						<li class="skill-tag">{s}</li>
-					{/each}
-				</ul>
 			</div>
 		</div>
 	</div>
@@ -196,6 +191,10 @@
 			<span class="sec-label">Resume</span>
 		</header>
 
+		<div class="cv-dl-inline" use:reveal>
+			<a href="/Ben-Green-UX-Resume-2026.pdf" class="btn-dl" download>Download CV ↓</a>
+		</div>
+
 		<div class="resume-cols">
 			<div>
 				<h2 class="col-heading" use:reveal>Experience</h2>
@@ -209,7 +208,7 @@
 							<p class="t-desc">{item.desc}</p>
 						</div>
 					</div>
-				{/each}
+					{/each}
 			</div>
 
 			<div>
@@ -226,9 +225,6 @@
 					</div>
 				{/each}
 
-				<div class="cv-dl" use:reveal={{ delay: 300 }}>
-					<a href="/Ben-Green-UX-Resume-2026.pdf" class="btn-dl" download>Download CV ↓</a>
-				</div>
 			</div>
 		</div>
 	</div>
@@ -485,31 +481,6 @@
 		margin-bottom: 20px;
 	}
 
-	.skills {
-		display: flex;
-		flex-wrap: wrap;
-		gap: 8px;
-		list-style: none;
-		margin-top: 32px;
-	}
-
-	.skill-tag {
-		display: inline-flex;
-		align-items: center;
-		padding: 6px 14px;
-		border: 1px solid var(--border);
-		border-radius: 100px;
-		font-size: 12px;
-		font-weight: 600;
-		letter-spacing: 0.04em;
-		color: var(--muted);
-		transition: border-color 0.2s, color 0.2s;
-	}
-
-	.skill-tag:hover {
-		border-color: var(--accent);
-		color: var(--accent);
-	}
 
 
 	/* ── PROJECTS ── */
@@ -663,6 +634,10 @@
 
 
 	/* ── RESUME ── */
+	.resume :global(.sec-header) {
+		margin-bottom: 32px;
+	}
+
 	.resume {
 		padding: var(--pad) 0;
 		border-top: 1px solid var(--border);
@@ -732,8 +707,8 @@
 		margin-top: 8px;
 	}
 
-	.cv-dl {
-		margin-top: 48px;
+	.cv-dl-inline {
+		margin-bottom: 56px;
 	}
 
 	.btn-dl {

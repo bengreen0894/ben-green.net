@@ -93,6 +93,53 @@ export const projects = [
 		]
 	},
 	{
+		slug: 'mulligan-labs',
+		title: 'Mulligan Labs',
+		category: 'Independent Project · Web App',
+		year: '2024',
+		description:
+			'Designed and co-built a real-time multiplayer Commander (EDH) deck testing platform integrating with Scryfall, Archidekt, and MTGGoldfish.',
+		bg: '#D0CCE8',
+		deco: '#2B1F5C',
+		hero: '/images/ml-landing.jpeg',
+		heroEmbed: 'https://mulligan-labs.com/',
+		siteUrl: 'https://mulligan-labs.com/',
+		comingSoon: false,
+		role: 'Designer & Co-founder',
+		team: '707 Labs',
+		tools: ['Figma', 'FigJam'],
+		sections: [
+			{
+				type: 'overview',
+				text: "Mulligan Labs is an independent project built under my LLC, 707 Labs. It lets Magic: The Gathering players test and play their Commander (EDH) decks online in real-time multiplayer — with seamless deck imports from Archidekt and MTGGoldfish and live card data from Scryfall. This project gave me hands-on experience with the full product lifecycle outside of a corporate environment."
+			},
+			{
+				type: 'stats',
+				items: [
+					{ value: '4P', label: 'real-time multiplayer — up to 4 players' },
+					{ value: '3', label: 'deck import integrations' },
+					{ value: '2024', label: 'launched under 707 Labs' }
+				]
+			},
+			{
+				type: 'image',
+				src: '/images/ml-lobby.jpeg',
+				alt: 'Mulligan Labs game lobby — room settings and deck selection',
+				caption: 'Game lobby: room settings, player slots, and deck import — all before the first card is drawn'
+			},
+			{
+				type: 'prose',
+				label: 'Challenge',
+				text: "Commander players have no great way to test decks against real opponents without physically meeting up or using clunky workarounds. Existing digital tools are either solitaire-only, paywalled, or lack real deck import options. The goal was a frictionless, free-to-use multiplayer table where any player could import and playtest a Commander deck in minutes."
+			},
+			{
+				type: 'prose',
+				label: 'My Role',
+				text: 'I led all design and contributed to frontend development. From defining the product concept and information architecture through visual design to working in code alongside my co-founder — this project sharpened both my product thinking and my ability to collaborate directly in the codebase.'
+			}
+		]
+	},
+	{
 		slug: 'usbank-ach-payments',
 		title: 'U.S. Bank — ACH Payments',
 		category: 'Fintech · Web & Mobile',
@@ -183,53 +230,6 @@ export const projects = [
 				type: 'prose',
 				label: 'Outcome',
 				text: "The first release shipped in April 2022. Based on research findings, multi-pay (up to 5 recipients per transaction) and recurring payment scheduling were prioritized and shipped in the next release. I handed off to a junior designer after release 2 while continuing to advise on patterns and design system alignment across the Money Movement org."
-			}
-		]
-	},
-	{
-		slug: 'mulligan-labs',
-		title: 'Mulligan Labs',
-		category: 'Independent Project · Web App',
-		year: '2024',
-		description:
-			'Designed and co-built a real-time multiplayer Commander (EDH) deck testing platform integrating with Scryfall, Archidekt, and MTGGoldfish.',
-		bg: '#D0CCE8',
-		deco: '#2B1F5C',
-		hero: '/images/ml-landing.jpeg',
-		heroEmbed: 'https://mulligan-labs.com/',
-		siteUrl: 'https://mulligan-labs.com/',
-		comingSoon: false,
-		role: 'Designer & Co-founder',
-		team: '707 Labs',
-		tools: ['Figma', 'FigJam'],
-		sections: [
-			{
-				type: 'overview',
-				text: "Mulligan Labs is an independent project built under my LLC, 707 Labs. It lets Magic: The Gathering players test and play their Commander (EDH) decks online in real-time multiplayer — with seamless deck imports from Archidekt and MTGGoldfish and live card data from Scryfall. This project gave me hands-on experience with the full product lifecycle outside of a corporate environment."
-			},
-			{
-				type: 'stats',
-				items: [
-					{ value: '4P', label: 'real-time multiplayer — up to 4 players' },
-					{ value: '3', label: 'deck import integrations' },
-					{ value: '2024', label: 'launched under 707 Labs' }
-				]
-			},
-			{
-				type: 'image',
-				src: '/images/ml-lobby.jpeg',
-				alt: 'Mulligan Labs game lobby — room settings and deck selection',
-				caption: 'Game lobby: room settings, player slots, and deck import — all before the first card is drawn'
-			},
-			{
-				type: 'prose',
-				label: 'Challenge',
-				text: "Commander players have no great way to test decks against real opponents without physically meeting up or using clunky workarounds. Existing digital tools are either solitaire-only, paywalled, or lack real deck import options. The goal was a frictionless, free-to-use multiplayer table where any player could import and playtest a Commander deck in minutes."
-			},
-			{
-				type: 'prose',
-				label: 'My Role',
-				text: 'I led all design and contributed to frontend development. From defining the product concept and information architecture through visual design to working in code alongside my co-founder — this project sharpened both my product thinking and my ability to collaborate directly in the codebase.'
 			}
 		]
 	},
