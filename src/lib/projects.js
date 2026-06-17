@@ -61,7 +61,7 @@ export const projects = [
 		slug: 'mulligan-labs',
 		title: 'Mulligan Labs',
 		category: 'Independent Project · Web App',
-		year: '2024',
+		year: '2026',
 		description:
 			'Designed and co-built a real-time multiplayer Commander (EDH) deck testing platform integrating with Scryfall, Archidekt, and MTGGoldfish.',
 		bg: '#D0CCE8',
@@ -82,9 +82,9 @@ export const projects = [
 			{
 				type: 'stats',
 				items: [
-					{ value: '4P', label: 'real-time multiplayer — up to 4 players' },
-					{ value: '3', label: 'deck import integrations' },
-					{ value: '2024', label: 'launched under 707 Labs' }
+					{ value: '930', label: 'users since launch (April 15, 2026)' },
+					{ value: '1,950', label: 'games played' },
+					{ value: '445', label: 'multiplayer games — 23% of total' }
 				]
 			},
 			{
