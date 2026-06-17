@@ -21,7 +21,8 @@
 	}
 
 	import { projects } from '$lib/projects.js';
-	import topoSvg from '$lib/topo.svg?raw';
+	import topoSvgRaw from '$lib/topo.svg?raw';
+	const topoInner = topoSvgRaw.replace(/^[\s\S]*?<svg[^>]*>/, '').replace(/<\/svg>\s*$/, '');
 
 	let heroEl;
 	let trailGroup;
@@ -102,19 +103,26 @@
 <svg class="filter-defs" width="0" height="0" aria-hidden="true">
 	<defs>
 		<filter id="trail-blur" x="-50%" y="-50%" width="200%" height="200%">
-			<feGaussianBlur stdDeviation="9" />
+			<feGaussianBlur stdDeviation="6" />
 		</filter>
 		<mask id="trail-mask" maskUnits="userSpaceOnUse" x="0" y="0" width="10000" height="10000">
 			<g bind:this={trailGroup} filter="url(#trail-blur)"></g>
 		</mask>
+		<symbol id="topo-shape" viewBox="0 0 654 655" preserveAspectRatio="xMidYMid slice">
+			{@html topoInner}
+		</symbol>
 	</defs>
 </svg>
 
 <!-- svelte-ignore a11y_no_static_element_interactions -->
 <section class="hero" bind:this={heroEl} on:mousemove={handleHeroMove}>
 	<div class="hero-bg" aria-hidden="true">
-		<div class="topo topo-gray">{@html topoSvg}</div>
-		<div class="topo topo-orange">{@html topoSvg}</div>
+		<svg class="topo topo-gray" viewBox="0 0 654 655" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+			<use href="#topo-shape" />
+		</svg>
+		<svg class="topo topo-orange" viewBox="0 0 654 655" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+			<use href="#topo-shape" />
+		</svg>
 	</div>
 
 	<div class="hero-inner">
@@ -172,8 +180,18 @@
 					aria-label={p.comingSoon ? `${p.title} — coming soon` : `View ${p.title} case study`}
 				>
 					<div class="card-thumb">
-						{#if p.hero}
-							<img class="card-thumb-img" src={p.hero} alt="" aria-hidden="true" />
+						{#if p.thumb || p.hero}
+							<img
+								class="card-thumb-img"
+								src={p.thumb ?? p.hero}
+								alt=""
+								aria-hidden="true"
+								width="600"
+								height="368"
+								loading={i === 0 ? 'eager' : 'lazy'}
+								decoding="async"
+								fetchpriority={i === 0 ? 'high' : 'auto'}
+							/>
 						{:else}
 							<div class="card-deco"></div>
 						{/if}
@@ -340,11 +358,6 @@
 	.topo {
 		position: absolute;
 		inset: 0;
-		width: 100%;
-		height: 100%;
-	}
-
-	.topo :global(svg) {
 		width: 100%;
 		height: 100%;
 		display: block;

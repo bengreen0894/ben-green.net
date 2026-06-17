@@ -8,9 +8,19 @@
 	let cursorEl;
 
 	onMount(() => {
+		let pendingX = 0, pendingY = 0, rafScheduled = false;
+
+		const flush = () => {
+			rafScheduled = false;
+			cursorEl.style.transform = `translate3d(${pendingX}px, ${pendingY}px, 0) translate(-50%, -50%)`;
+		};
 		const move = (e) => {
-			cursorEl.style.left = e.clientX + 'px';
-			cursorEl.style.top  = e.clientY + 'px';
+			pendingX = e.clientX;
+			pendingY = e.clientY;
+			if (!rafScheduled) {
+				rafScheduled = true;
+				requestAnimationFrame(flush);
+			}
 		};
 		const over = (e) => {
 			if (e.target.closest('a, button, [role="button"]')) cursorEl.classList.add('is-hover');
@@ -21,7 +31,7 @@
 		const hide = () => { cursorEl.style.opacity = '0'; };
 		const show = () => { cursorEl.style.opacity = '1'; };
 
-		window.addEventListener('mousemove', move);
+		window.addEventListener('mousemove', move, { passive: true });
 		document.addEventListener('mouseover', over);
 		document.addEventListener('mouseout', out);
 		document.addEventListener('mouseleave', hide);
@@ -104,15 +114,16 @@
 
 	.cursor {
 		position: fixed;
-		left: -40px;
-		top: -40px;
+		left: 0;
+		top: 0;
 		width: 10px;
 		height: 10px;
 		background: var(--accent);
 		border-radius: 50%;
 		pointer-events: none;
 		z-index: 9999;
-		transform: translate(-50%, -50%);
+		transform: translate3d(-40px, -40px, 0) translate(-50%, -50%);
+		will-change: transform;
 		transition: width 0.18s ease, height 0.18s ease, background 0.18s ease, border 0.18s ease;
 	}
 
