@@ -1,94 +1,57 @@
 /** @type {import('./types').Project[]} */
 export const projects = [
 	{
-		slug: 'usbank-external-transfers',
-		title: 'U.S. Bank — External Transfers',
+		slug: 'usbank-transfers',
+		title: 'U.S. Bank — Transfers Product Merge',
 		category: 'Fintech · Web & Mobile',
-		year: '2021',
+		year: '2025',
 		description:
-			'End-to-end redesign of the external transfers experience for web and mobile — replacing a legacy vendor product with an in-house solution serving millions of customers.',
-		bg: '#CAD5EA',
-		deco: '#1B3A5C',
-		hero: '/images/et-hero.jpg',
+			'Merged Internal and External Transfers into a single money-movement experience across web and mobile. Staggered rollout reached 100% of digital customers with a +7 point CSAT lift.',
+		bg: '#D4D8E0',
+		deco: '#2A3244',
+		hero: '/images/transfers-merge-hero.png',
 		comingSoon: false,
 		role: 'Senior Experience Designer',
 		team: 'U.S. Bank Digital',
-		tools: ['Figma', 'FigJam', 'UserZoom'],
+		tools: ['Figma', 'FigJam'],
 		sections: [
 			{
 				type: 'overview',
-				text: "U.S. Bank's only external transfer product was a legacy Fiserv vendor tool — desktop-only, visually outdated, and scheduled to be sunset. With transferring funds being the #2 task for digital customers right after checking balances, the urgency for a polished in-house replacement was clear. I led end-to-end design of the new external transfers experience across responsive web and native-feel mobile, from initial user flows through the November 2021 launch."
+				text: "After leading U.S. Bank's first in-house External Transfers product in 2021, the next chapter was clear: customers shouldn't have to pick a different product depending on which accounts they wanted to move money between. The Transfers Product Merge was a multi-year initiative — pushed from the design side starting in 2021, picked up by the business in 2023 — to unify Internal and External Transfers into a single experience across web and mobile. I led design end-to-end from initial pitch through the staggered rollout that wrapped in early 2026."
 			},
 			{
 				type: 'stats',
 				items: [
-					{ value: '#2', label: 'most-used task for U.S. Bank digital customers' },
-					{ value: '2', label: 'platforms — responsive web & adaptive mobile' },
-					{ value: '+85%', label: 'DIY transfer completion rates post-launch' }
+					{ value: '88% → 95%', label: 'CSAT lift after the merged experience reached 100% of customers' },
+					{ value: '13 million / month', label: 'transfers processed through the unified experience' }
 				]
 			},
 			{
 				type: 'prose',
 				label: 'Challenge',
-				text: "The Fiserv partnership was planned to sunset, leaving no external transfer capability for millions of customers. The legacy tool was desktop-only and full of friction. The brief called for a seamless experience to quickly move funds between U.S. Bank and outside financial institutions — with a strategic push from design leadership to merge the product with Internal Transfers for a one-stop money-movement hub. I was design lead alongside one junior designer, with content strategy shared across team resources."
-			},
-			{
-				type: 'pullquote',
-				text: 'Just after viewing balances, transferring funds is the 2nd most common task for our digital customers.'
+				text: "Internal and External Transfers lived as completely separate products, owned by separate organizations, with separate IAs, separate components, and separate engineering pipelines — even though from the customer's perspective both were just 'move money between my accounts.' Users had to know which product to enter based on whether the destination was a U.S. Bank account or not. In moderated usability testing, 88% of participants said they'd prefer a single merged experience over the two siloed products. The challenge was as political as it was technical: aligning two organizations around a single front-end while preserving the backend systems of record each side depended on. I started pressing on product portfolio leads in 2021 right after the External Transfers launch; by 2023, alignment finally landed and the merge was funded."
 			},
 			{
 				type: 'image',
-				src: '/images/et-concepts.png',
-				alt: 'Two concept directions for the External Transfers flow',
-				caption: 'Concept A vs. Concept B — tested before committing to a direction'
+				src: '/images/transfers-merge-desktop.png',
+				alt: 'Desktop happy-path flow for the merged Transfers product',
+				caption: 'Full happy-path flow on desktop — source, destination, amount, review, OTP, confirmation'
 			},
 			{
-				type: 'process',
+				type: 'prose',
 				label: 'Approach',
-				steps: [
-					{
-						num: '01',
-						title: 'Requirements & Flows',
-						desc: 'Worked with product and business lines to define the core requirement set, then created low-fidelity user flows and two distinct concept directions around different interaction patterns.'
-					},
-					{
-						num: '02',
-						title: 'Concept Testing',
-						desc: 'Ran moderated usability sessions to evaluate both concepts before committing. Navigation and internal vs. external account differentiation surfaced as the biggest friction points.'
-					},
-					{
-						num: '03',
-						title: 'Iteration & Design System',
-						desc: "Designed a landing page to solve the mobile navigation problem, improved the review screen, and contributed new 'radio row with icon' components back to the design system — fully adopted by 2023."
-					},
-					{
-						num: '04',
-						title: 'Cross-team Alignment',
-						desc: "Facilitated recurring 'Money-Movement Alignment' syncs across product teams to share patterns — resulting in reused components across account selection, dollar inputs, and review screens."
-					}
-				]
+				text: "We unified the entry point so customers landed in one Transfers experience and the right backend was invoked automatically based on the account combination they chose. I reimagined the local navigation to handle Transfer Activity, History, and Linked Accounts as first-class concerns of the merged product, not bolted-on satellites. The trickiest design work was smoothing the seams between several different APIs and systems of record — making sure the experience felt continuous when the underlying plumbing was anything but. I ran three rounds of moderated usability testing (one on mobile, two on desktop) to validate the new flows. In parallel, I consolidated a large atomic component library in Figma — branched from the U.S. Bank Org design system — that became the single source of truth for the merged product across both platforms."
 			},
 			{
 				type: 'image',
-				src: '/images/et-landing.png',
-				alt: 'External Transfers landing page — mobile and desktop',
-				caption: 'The landing page solution — organizing money movement around customer mental models'
-			},
-			{
-				type: 'callout',
-				label: 'Key Insight',
-				text: "Navigation was the top pain point — users on mobile had to scan an overwhelming native sheet menu to find external transfers. The solution was a purpose-built landing page that organized the entire money movement portfolio around customer mental models, not internal product siloes. It was approved in design review and shipped as part of the MVP."
-			},
-			{
-				type: 'image',
-				src: '/images/et-design-system.png',
-				alt: 'Design system contribution — radio row with icon component',
-				caption: 'The "radio row with icon" component contributed to the design system, fully adopted org-wide by 2023'
+				src: '/images/transfers-merge-mobile.png',
+				alt: 'Mobile flow for the merged Transfers product',
+				caption: 'The same flow translated to mobile — chooser, amount, review, OTP, confirmation'
 			},
 			{
 				type: 'prose',
 				label: 'Outcome',
-				text: "The new external transfers product shipped in November 2021. Post-launch metrics showed a +5% lift in CSAT scores, approximately 20,000 new customer engagements, and an +85% improvement in DIY transfer completion rates. The radio-button-with-icon design system contribution became a fully adopted component across the Money Movement org by 2023."
+				text: "Staggered rollout began in September 2025. As of February 2026, 100% of U.S. Bank digital customers are on the merged Transfers experience. CSAT for the unified product jumped from 88% to 95% — a 7-point lift over the pre-merge baseline, and validation of the 2021 user-testing signal that customers wanted this from the start."
 			}
 		]
 	},
@@ -234,17 +197,95 @@ export const projects = [
 		]
 	},
 	{
-		slug: 'usbank-transfers',
-		title: 'U.S. Bank — Transfers',
-		category: 'Fintech · Coming Soon',
-		year: '2025',
-		description: 'Case study coming soon.',
-		bg: '#D4D8E0',
-		deco: '#2A3244',
-		comingSoon: true,
+		slug: 'usbank-external-transfers',
+		title: 'U.S. Bank — External Transfers',
+		category: 'Fintech · Web & Mobile',
+		year: '2021',
+		description:
+			'End-to-end redesign of the external transfers experience for web and mobile — replacing a legacy vendor product with an in-house solution serving millions of customers.',
+		bg: '#CAD5EA',
+		deco: '#1B3A5C',
+		hero: '/images/et-hero.jpg',
+		comingSoon: false,
 		role: 'Senior Experience Designer',
 		team: 'U.S. Bank Digital',
-		tools: [],
-		sections: []
+		tools: ['Figma', 'FigJam', 'UserZoom'],
+		sections: [
+			{
+				type: 'overview',
+				text: "U.S. Bank's only external transfer product was a legacy Fiserv vendor tool — desktop-only, visually outdated, and scheduled to be sunset. With transferring funds being the #2 task for digital customers right after checking balances, the urgency for a polished in-house replacement was clear. I led end-to-end design of the new external transfers experience across responsive web and native-feel mobile, from initial user flows through the November 2021 launch."
+			},
+			{
+				type: 'stats',
+				items: [
+					{ value: '#2', label: 'most-used task for U.S. Bank digital customers' },
+					{ value: '2', label: 'platforms — responsive web & adaptive mobile' },
+					{ value: '+85%', label: 'DIY transfer completion rates post-launch' }
+				]
+			},
+			{
+				type: 'prose',
+				label: 'Challenge',
+				text: "The Fiserv partnership was planned to sunset, leaving no external transfer capability for millions of customers. The legacy tool was desktop-only and full of friction. The brief called for a seamless experience to quickly move funds between U.S. Bank and outside financial institutions — with a strategic push from design leadership to merge the product with Internal Transfers for a one-stop money-movement hub. I was design lead alongside one junior designer, with content strategy shared across team resources."
+			},
+			{
+				type: 'pullquote',
+				text: 'Just after viewing balances, transferring funds is the 2nd most common task for our digital customers.'
+			},
+			{
+				type: 'image',
+				src: '/images/et-concepts.png',
+				alt: 'Two concept directions for the External Transfers flow',
+				caption: 'Concept A vs. Concept B — tested before committing to a direction'
+			},
+			{
+				type: 'process',
+				label: 'Approach',
+				steps: [
+					{
+						num: '01',
+						title: 'Requirements & Flows',
+						desc: 'Worked with product and business lines to define the core requirement set, then created low-fidelity user flows and two distinct concept directions around different interaction patterns.'
+					},
+					{
+						num: '02',
+						title: 'Concept Testing',
+						desc: 'Ran moderated usability sessions to evaluate both concepts before committing. Navigation and internal vs. external account differentiation surfaced as the biggest friction points.'
+					},
+					{
+						num: '03',
+						title: 'Iteration & Design System',
+						desc: "Designed a landing page to solve the mobile navigation problem, improved the review screen, and contributed new 'radio row with icon' components back to the design system — fully adopted by 2023."
+					},
+					{
+						num: '04',
+						title: 'Cross-team Alignment',
+						desc: "Facilitated recurring 'Money-Movement Alignment' syncs across product teams to share patterns — resulting in reused components across account selection, dollar inputs, and review screens."
+					}
+				]
+			},
+			{
+				type: 'image',
+				src: '/images/et-landing.png',
+				alt: 'External Transfers landing page — mobile and desktop',
+				caption: 'The landing page solution — organizing money movement around customer mental models'
+			},
+			{
+				type: 'callout',
+				label: 'Key Insight',
+				text: "Navigation was the top pain point — users on mobile had to scan an overwhelming native sheet menu to find external transfers. The solution was a purpose-built landing page that organized the entire money movement portfolio around customer mental models, not internal product siloes. It was approved in design review and shipped as part of the MVP."
+			},
+			{
+				type: 'image',
+				src: '/images/et-design-system.png',
+				alt: 'Design system contribution — radio row with icon component',
+				caption: 'The "radio row with icon" component contributed to the design system, fully adopted org-wide by 2023'
+			},
+			{
+				type: 'prose',
+				label: 'Outcome',
+				text: "The new external transfers product shipped in November 2021. Post-launch metrics showed a +5% lift in CSAT scores, approximately 20,000 new customer engagements, and an +85% improvement in DIY transfer completion rates. The radio-button-with-icon design system contribution became a fully adopted component across the Money Movement org by 2023."
+			}
+		]
 	}
 ];

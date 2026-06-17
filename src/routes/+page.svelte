@@ -21,6 +21,34 @@
 	}
 
 	import { projects } from '$lib/projects.js';
+	import topoSvg from '$lib/topo.svg?raw';
+
+	let heroEl;
+	let trailGroup;
+	let lastStamp = 0;
+	const SVG_NS = 'http://www.w3.org/2000/svg';
+
+	function handleHeroMove(e) {
+		if (!heroEl || !trailGroup) return;
+		// Throttle to ~one dot per 22ms so fast moves don't flood the DOM
+		const now = performance.now();
+		if (now - lastStamp < 22) return;
+		lastStamp = now;
+
+		const r = heroEl.getBoundingClientRect();
+		const x = e.clientX - r.left;
+		const y = e.clientY - r.top;
+
+		const c = document.createElementNS(SVG_NS, 'circle');
+		c.setAttribute('cx', x);
+		c.setAttribute('cy', y);
+		c.setAttribute('r', 30);
+		c.setAttribute('fill', 'white');
+		c.classList.add('trail-dot');
+		trailGroup.appendChild(c);
+		// Auto-cleanup once the fade completes
+		setTimeout(() => c.remove(), 450);
+	}
 
 	const experience = [
 		{
@@ -45,7 +73,7 @@
 
 	const education = [
 		{
-			period: '2019',
+			period: '2017',
 			degree: 'B.F.A. Industrial Design',
 			school: 'University of Wisconsin – Stout'
 		}
@@ -59,6 +87,7 @@
 		copied = true;
 		setTimeout(() => { copied = false; }, 2200);
 	}
+
 </script>
 
 <svelte:head>
@@ -68,12 +97,29 @@
 
 <!-- ─────────────────────────────── HERO ─────────────────────────────── -->
 
-<section class="hero">
-	<div class="hero-bg" aria-hidden="true"></div>
+<!-- svelte-ignore a11y_no_static_element_interactions -->
+<!-- Trail mask: blurred white circles inside an SVG <mask> reveal the orange topo -->
+<svg class="filter-defs" width="0" height="0" aria-hidden="true">
+	<defs>
+		<filter id="trail-blur" x="-50%" y="-50%" width="200%" height="200%">
+			<feGaussianBlur stdDeviation="9" />
+		</filter>
+		<mask id="trail-mask" maskUnits="userSpaceOnUse" x="0" y="0" width="10000" height="10000">
+			<g bind:this={trailGroup} filter="url(#trail-blur)"></g>
+		</mask>
+	</defs>
+</svg>
+
+<!-- svelte-ignore a11y_no_static_element_interactions -->
+<section class="hero" bind:this={heroEl} on:mousemove={handleHeroMove}>
+	<div class="hero-bg" aria-hidden="true">
+		<div class="topo topo-gray">{@html topoSvg}</div>
+		<div class="topo topo-orange">{@html topoSvg}</div>
+	</div>
 
 	<div class="hero-inner">
 		<div class="hero-text">
-			<p class="hero-label">Sr. Experience Designer &amp; Vibe Coder — St. Paul, MN</p>
+			<p class="hero-greeting">Hello, I'm</p>
 
 			<h1 class="hero-name">
 				<span class="name-solid">Ben</span>
@@ -82,57 +128,27 @@
 
 			<div class="hero-rule"></div>
 
-			<p class="hero-tagline">
-				Solving<br />Exploring<br />Creating
-			</p>
-		</div>
-
-		<div class="hero-badge" aria-hidden="true">
-			<div class="sf-scene">
-				<div class="sf-cube">
-					<div class="sf-face sf-front"></div>
-					<div class="sf-face sf-back"></div>
-					<div class="sf-face sf-left"></div>
-					<div class="sf-face sf-right"></div>
-					<div class="sf-face sf-top"></div>
-					<div class="sf-face sf-bottom"></div>
-				</div>
+			<div class="hero-about">
+				<div class="hero-about-backdrop" aria-hidden="true"></div>
+				<p class="hero-about-lead">
+					I'm a <span class="accent">Senior product + experience designer</span> with
+					<span class="accent">8 years</span> of industry experience crafting high-quality
+					digital products.
+				</p>
+				<p>
+					I've fully leaned into emerging tools — using AI-assisted workflows to build
+					components, shape design systems, and ship complete products. Closing the gap
+					between design and the build has made me a more precise designer and a faster
+					collaborator.
+				</p>
 			</div>
 		</div>
 	</div>
 
-	<a href="#about" class="scroll-cue" aria-label="Scroll to about section">
+	<a href="#projects" class="scroll-cue" aria-label="Scroll to projects section">
 		<span>Scroll</span>
 		<span class="arrow">↓</span>
 	</a>
-</section>
-
-
-<!-- ─────────────────────────────── ABOUT ─────────────────────────────── -->
-
-<section class="about" id="about">
-	<div class="container">
-		<header class="sec-header">
-			<span class="sec-num" aria-hidden="true">01</span>
-			<span class="sec-label">About</span>
-		</header>
-
-		<div class="about-grid">
-			<div class="about-copy">
-				<p use:reveal={{ delay: 80 }}>
-					I'm a product designer with 8 years of industry experience crafting high-quality
-					digital products. My background in Industrial Design (B.F.A.) shapes how I approach
-					problems — with structure, systems thinking, and a focus on what's made to last.
-				</p>
-				<p use:reveal={{ delay: 160 }}>
-					I've fully leaned into emerging tools — using AI-assisted workflows to build components,
-					shape design systems, and ship complete products. Closing the gap between design and
-					code makes me a more precise designer and a faster collaborator.
-				</p>
-
-			</div>
-		</div>
-	</div>
 </section>
 
 
@@ -141,7 +157,7 @@
 <section class="projects" id="projects">
 	<div class="container">
 		<header class="sec-header">
-			<span class="sec-num" aria-hidden="true">02</span>
+			<span class="sec-num" aria-hidden="true">01</span>
 			<span class="sec-label">Projects</span>
 		</header>
 
@@ -187,7 +203,7 @@
 <section class="resume" id="resume">
 	<div class="container">
 		<header class="sec-header">
-			<span class="sec-num" aria-hidden="true">03</span>
+			<span class="sec-num" aria-hidden="true">02</span>
 			<span class="sec-label">Resume</span>
 		</header>
 
@@ -314,15 +330,53 @@
 		overflow: hidden;
 	}
 
-	/* subtle graph-paper grid */
+	/* topographic background — two stacked layers, top one masked to a cursor spotlight */
 	.hero-bg {
 		position: absolute;
 		inset: 0;
-		background-image:
-			linear-gradient(rgba(26,23,20,0.055) 1px, transparent 1px),
-			linear-gradient(90deg, rgba(26,23,20,0.055) 1px, transparent 1px);
-		background-size: clamp(44px, 7vw, 80px) clamp(44px, 7vw, 80px);
 		pointer-events: none;
+	}
+
+	.topo {
+		position: absolute;
+		inset: 0;
+		width: 100%;
+		height: 100%;
+	}
+
+	.topo :global(svg) {
+		width: 100%;
+		height: 100%;
+		display: block;
+	}
+
+	.topo-gray {
+		color: rgba(26, 23, 20, 0.045);
+	}
+
+	.topo-orange {
+		color: rgba(200, 71, 43, 0.55);
+		-webkit-mask: url(#trail-mask);
+		mask: url(#trail-mask);
+		-webkit-mask-mode: alpha;
+		mask-mode: alpha;
+	}
+
+	.filter-defs {
+		position: absolute;
+		width: 0;
+		height: 0;
+		overflow: hidden;
+		pointer-events: none;
+	}
+
+	:global(.trail-dot) {
+		animation: trail-fade 420ms ease-out forwards;
+	}
+
+	@keyframes trail-fade {
+		0%   { opacity: 1; }
+		100% { opacity: 0; }
 	}
 
 	.hero-inner {
@@ -331,115 +385,99 @@
 		width: 100%;
 		display: flex;
 		align-items: center;
-		justify-content: space-between;
+		justify-content: flex-start;
 		gap: 40px;
 		position: relative;
 	}
 
-	.hero-label {
-		font-size: 12px;
+	.hero-greeting {
+		font-size: 20px;
 		font-weight: 600;
-		letter-spacing: 0.1em;
-		text-transform: uppercase;
-		color: var(--muted);
+		letter-spacing: 0.06em;
+		text-transform: capitalize;
+		color: var(--accent);
 		margin-bottom: 20px;
 		animation: fadeUp 0.9s ease both;
 	}
 
+	.hero-text {
+		max-width: 720px;
+	}
+
 	.hero-name {
 		font-family: var(--font-display);
-		font-size: clamp(76px, 13vw, 196px);
-		font-weight: 900;
-		font-style: italic;
-		line-height: 0.88;
+		font-size: clamp(56px, 6vw, 80px);
+		font-weight: 700;
+		font-style: normal;
+		line-height: 0.9;
 		letter-spacing: -0.03em;
-		margin-bottom: 36px;
+		margin-bottom: 32px;
+		color: #2d2c2b;
 	}
 
-	.name-solid {
-		display: block;
-		animation: fadeUp 0.9s ease 0.1s both;
-	}
-
+	.name-solid,
 	.name-outline {
 		display: block;
-		margin-left: clamp(36px, 7vw, 112px);
+		margin-left: 0;
+		background-color: #2d2c2b;
+		background-image: url('/paper.svg');
+		background-size: 600px 600px;
+		background-blend-mode: multiply;
+		-webkit-background-clip: text;
+		background-clip: text;
 		color: transparent;
-		-webkit-text-stroke: 2px var(--text);
-		animation: fadeUp 0.9s ease 0.2s both;
+		-webkit-text-fill-color: transparent;
 	}
 
+	.name-solid  { animation: fadeUp 0.9s ease 0.45s both; }
+	.name-outline { animation: fadeUp 0.9s ease 0.45s both; }
+
 	.hero-rule {
-		width: clamp(72px, 14vw, 180px);
+		width: clamp(280px, 46vw, 662px);
 		height: 1.5px;
-		background: var(--accent);
-		margin-bottom: 28px;
+		background: rgba(200, 71, 43, 0.5);
+		margin-bottom: 32px;
 		transform-origin: left;
 		animation: growX 0.9s ease 0.35s both;
 	}
 
-	.hero-tagline {
-		font-size: clamp(18px, 2.4vw, 26px);
-		line-height: 1.45;
-		color: var(--muted);
+	.hero-about {
+		position: relative;
+		max-width: 662px;
+		padding: 24px 28px;
 		animation: fadeUp 0.9s ease 0.45s both;
 	}
 
-	/* ── Seafarer cube ── */
-	.hero-badge {
-		flex-shrink: 0;
-		width: clamp(161px, 18.4vw, 253px);
-		height: clamp(161px, 18.4vw, 253px);
-		display: flex;
-		align-items: center;
-		justify-content: center;
-		border-radius: 50%;
-		background: var(--accent);
-		outline: 1px solid var(--accent);
-		outline-offset: 8px;
-		margin-right: clamp(24px, 9vw, 140px);
-		animation: fadeIn 1s ease 0.7s both;
+	.hero-about-backdrop {
+		position: absolute;
+		inset: 0;
+		background: rgba(212, 216, 224, 0.6);
+		backdrop-filter: blur(6px);
+		-webkit-backdrop-filter: blur(6px);
+		border-radius: 12px;
+		z-index: 0;
+		pointer-events: none;
 	}
 
-	.sf-scene {
-		--sz: clamp(88px, 10vw, 130px);
-		perspective: 560px;
-		width: var(--sz);
-		height: var(--sz);
-	}
-
-	.sf-cube {
-		width: 100%;
-		height: 100%;
+	.hero-about p {
 		position: relative;
-		transform-style: preserve-3d;
-		animation: sf-spin 7s linear infinite;
+		z-index: 1;
+		font-size: 17px;
+		line-height: 1.72;
+		color: var(--text);
+		margin-bottom: 16px;
 	}
 
-	.sf-face {
-		position: absolute;
-		inset: 0;
-		backface-visibility: hidden;
+	.hero-about p:last-child {
+		margin-bottom: 0;
 	}
 
-	.sf-face::before {
-		content: '';
-		position: absolute;
-		inset: 0;
-		background-image: url('/seafarer-texture.png');
-		background-size: cover;
+	.hero-about-lead {
+		font-weight: 700;
 	}
 
-	.sf-front  { transform: translateZ(calc(var(--sz) / 2)); }
-	.sf-back   { transform: rotateY(180deg) translateZ(calc(var(--sz) / 2)); }
-	.sf-left   { transform: rotateY(-90deg) translateZ(calc(var(--sz) / 2)); }
-	.sf-right  { transform: rotateY( 90deg) translateZ(calc(var(--sz) / 2)); }
-	.sf-top    { transform: rotateX( 90deg) translateZ(calc(var(--sz) / 2)); }
-	.sf-bottom { transform: rotateX(-90deg) translateZ(calc(var(--sz) / 2)); }
-
-	@keyframes sf-spin {
-		from { transform: rotateX(-35deg) rotateY(  0deg); }
-		to   { transform: rotateX(-35deg) rotateY(360deg); }
+	.hero-about .accent {
+		color: var(--accent);
 	}
 
 	.scroll-cue {
@@ -462,25 +500,6 @@
 	.scroll-cue .arrow {
 		animation: bob 2.2s ease-in-out infinite;
 	}
-
-
-	/* ── ABOUT ── */
-	.about {
-		padding: var(--pad) 0;
-		border-top: 1px solid var(--border);
-	}
-
-	.about-grid {
-		max-width: 720px;
-	}
-
-	.about-copy p {
-		font-size: 17px;
-		line-height: 1.72;
-		color: var(--text);
-		margin-bottom: 20px;
-	}
-
 
 
 	/* ── PROJECTS ── */
@@ -580,14 +599,15 @@
 	}
 
 	.card-yr {
-		font-size: 12px;
+		font-size: 11px;
+		font-weight: 700;
+		letter-spacing: 0.08em;
 		color: var(--muted);
 	}
 
 	.card-title {
 		font-family: var(--font-display);
 		font-size: clamp(20px, 2.4vw, 28px);
-		font-style: italic;
 		font-weight: 700;
 		line-height: 1.15;
 		margin-bottom: 10px;
@@ -654,7 +674,14 @@
 		font-size: 26px;
 		font-style: italic;
 		font-weight: 400;
-		color: var(--muted);
+		background-color: var(--muted);
+		background-image: url('/paper.svg');
+		background-size: 600px 600px;
+		background-blend-mode: multiply;
+		-webkit-background-clip: text;
+		background-clip: text;
+		color: transparent;
+		-webkit-text-fill-color: transparent;
 		margin-bottom: 48px;
 	}
 
@@ -859,8 +886,6 @@
 		.resume-cols { grid-template-columns: 1fr; gap: 56px; }
 
 		.contact-grid { grid-template-columns: 1fr; gap: 48px; }
-
-		.hero-badge { display: none; }
 	}
 
 	@media (max-width: 600px) {

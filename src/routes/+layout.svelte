@@ -43,12 +43,13 @@
 	});
 
 	const links = [
-		{ href: '#about',    label: 'About'    },
 		{ href: '#projects', label: 'Projects' },
 		{ href: '#resume',   label: 'Resume'   },
 		{ href: '#contact',  label: 'Contact'  }
 	];
 </script>
+
+<div class="paper" aria-hidden="true"></div>
 
 <div class="cursor" bind:this={cursorEl} aria-hidden="true"></div>
 
@@ -84,6 +85,23 @@
 <style>
 	:global(*, *::before, *::after) { cursor: none !important; }
 
+	/* Animated paper-grain texture across the whole page */
+	.paper {
+		position: fixed;
+		inset: 0;
+		z-index: 200;
+		pointer-events: none;
+		background-image: url('/paper.svg');
+		background-size: 1200px 1200px;
+		background-repeat: repeat;
+		opacity: 0.12;
+		mix-blend-mode: multiply;
+	}
+
+	@media (prefers-reduced-motion: reduce) {
+		.paper { animation: none; }
+	}
+
 	.cursor {
 		position: fixed;
 		left: -40px;
@@ -110,7 +128,14 @@
 		inset: 0 0 auto;
 		z-index: 100;
 		height: var(--nav-h);
-		transition: background 0.3s, box-shadow 0.3s, backdrop-filter 0.3s;
+		padding: 0 var(--gutter);
+		background: linear-gradient(
+			180deg,
+			rgba(240, 235, 225, 0.95) 0%,
+			rgba(240, 235, 225, 0.75) 55%,
+			rgba(240, 235, 225, 0) 100%
+		);
+		transition: box-shadow 0.3s, backdrop-filter 0.3s;
 	}
 
 	nav.scrolled {
@@ -123,7 +148,6 @@
 	.inner {
 		max-width: var(--container);
 		margin: 0 auto;
-		padding: 0 var(--gutter);
 		height: 100%;
 		display: flex;
 		align-items: center;

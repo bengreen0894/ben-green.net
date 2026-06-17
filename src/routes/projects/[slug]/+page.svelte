@@ -1,16 +1,14 @@
 <script>
 	import { onMount } from 'svelte';
 
-	/** @type {import('svelte/action').Action<HTMLElement, {delay?: number, y?: number}>} */
-	function reveal(node, { delay = 0, y = 28 } = {}) {
+	/** @type {import('svelte/action').Action<HTMLElement, {delay?: number}>} */
+	function reveal(node, { delay = 0 } = {}) {
 		node.style.opacity = '0';
-		node.style.transform = `translateY(${y}px)`;
-		node.style.transition = `opacity 0.75s ease ${delay}ms, transform 0.75s ease ${delay}ms`;
+		node.style.transition = `opacity 0.5s ease ${delay}ms`;
 		const io = new IntersectionObserver(
 			([entry]) => {
 				if (entry.isIntersecting) {
 					node.style.opacity = '1';
-					node.style.transform = 'translateY(0)';
 					io.disconnect();
 				}
 			},
@@ -259,9 +257,18 @@
 		font-size: clamp(40px, 7vw, 96px);
 		font-style: italic;
 		font-weight: 900;
-		line-height: 0.95;
+		line-height: 1.1;
 		letter-spacing: -0.03em;
 		margin-bottom: 28px;
+		padding-bottom: 0.08em;
+		background-color: var(--text);
+		background-image: url('/paper.svg');
+		background-size: 600px 600px;
+		background-blend-mode: multiply;
+		-webkit-background-clip: text;
+		background-clip: text;
+		color: transparent;
+		-webkit-text-fill-color: transparent;
 	}
 
 	.cs-lead {
