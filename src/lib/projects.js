@@ -73,7 +73,7 @@ export const projects = [
 		comingSoon: false,
 		role: 'Designer & Co-founder',
 		team: '707 Labs',
-		tools: ['Figma', 'FigJam'],
+		tools: ['Figma', 'Claude Code'],
 		sections: [
 			{
 				type: 'overview',
@@ -81,6 +81,7 @@ export const projects = [
 			},
 			{
 				type: 'stats',
+				theme: 'dark-gold',
 				items: [
 					{ value: '930', label: 'users since launch (April 15, 2026)' },
 					{ value: '1,950', label: 'games played' },
@@ -102,6 +103,35 @@ export const projects = [
 				type: 'prose',
 				label: 'My Role',
 				text: 'I led all design and contributed to frontend development. From defining the product concept and information architecture through visual design to working in code alongside my co-founder — this project sharpened both my product thinking and my ability to collaborate directly in the codebase.'
+			},
+			{
+				type: 'prose',
+				label: 'All Under One Roof',
+				text: "Mulligan Labs is the most feature-rich way to play Magic: The Gathering online today — a complete Commander table with phase tracking, life and counter management, library search with Scryfall syntax, quick-actions like Scry, Mill, and Proliferate, plus customizable layouts, foil shimmer, and CRT effects. It also doubles as a brewing workshop: import a deck and get AI-powered suggestions to refine your list. Play, test, and improve — all in the same product."
+			},
+			{
+				type: 'image',
+				src: '/images/ml-gameplay-actions.png',
+				alt: 'Mulligan Labs game board with a card action menu open',
+				caption: 'Game board: phase tracker, life and counter management, and contextual card actions (cast, discard, exile, clone, and more).'
+			},
+			{
+				type: 'image',
+				src: '/images/ml-gameplay-quickactions.png',
+				alt: 'Quick-actions panel with Scry, Mill, Reveal, Surveil, and Proliferate',
+				caption: 'Quick-actions: one-tap Scry, Mill, Reveal, Surveil, and Proliferate — the moves Commander players reach for every turn.'
+			},
+			{
+				type: 'image',
+				src: '/images/ml-gameplay-search.png',
+				alt: 'Search Library modal with Scryfall syntax and zone tabs',
+				caption: 'Library search with full Scryfall syntax — tutor across hand, battlefield, graveyard, and exile without leaving the table.'
+			},
+			{
+				type: 'image',
+				src: '/images/ml-gameplay-settings.png',
+				alt: 'Layout and view settings with foil shimmer, CRT effect, and card size',
+				caption: 'Layout and view settings: card size, foil shimmer, CRT effect, rotation, and custom playmats — players make the table their own.'
 			}
 		]
 	},
