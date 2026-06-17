@@ -10,6 +10,7 @@ export const projects = [
 		bg: '#D4D8E0',
 		deco: '#2A3244',
 		hero: '/images/transfers-merge-hero.png',
+		heroFit: 'contain',
 		thumb: '/images/transfers-merge-thumb.jpg',
 		comingSoon: false,
 		role: 'Senior Experience Designer',

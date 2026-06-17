@@ -74,7 +74,7 @@
 			</div>
 		{/if}
 	{:else if p.hero}
-		<div class="cs-hero-img">
+		<div class="cs-hero-img" class:full={p.heroFit === 'contain'}>
 			<img src={p.hero} alt="{p.title} — project overview" />
 		</div>
 	{:else}
@@ -329,6 +329,15 @@
 		object-fit: cover;
 		object-position: center top;
 		display: block;
+	}
+
+	.cs-hero-img.full {
+		max-height: none;
+	}
+
+	.cs-hero-img.full img {
+		height: auto;
+		object-fit: unset;
 	}
 
 	/* ── Hero color block (fallback) ── */
