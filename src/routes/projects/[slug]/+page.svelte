@@ -481,22 +481,14 @@
 
 	/* Bronze-and-gold dark theme (Mulligan Labs) */
 	.sec-stats.stats-dark {
-		--stats-bg: #14111c;
+		--stats-bg: #1a1108;
 		--stats-accent: #d4b15a;
 		--stats-text: #e8dfc8;
 		--stats-border: rgba(180, 135, 60, 0.32);
 		background:
-			radial-gradient(ellipse at 20% 40%, rgba(184, 115, 51, 0.18), transparent 55%),
-			radial-gradient(ellipse at 80% 60%, rgba(212, 177, 90, 0.12), transparent 55%),
+			radial-gradient(ellipse at 20% 40%, rgba(184, 115, 51, 0.22), transparent 55%),
+			radial-gradient(ellipse at 80% 60%, rgba(212, 177, 90, 0.14), transparent 55%),
 			var(--stats-bg);
-	}
-
-	.sec-stats.stats-dark .stat-val {
-		background: linear-gradient(180deg, #f1d98a 0%, #d4b15a 55%, #a87a2e 100%);
-		-webkit-background-clip: text;
-		background-clip: text;
-		color: transparent;
-		text-shadow: 0 1px 0 rgba(0, 0, 0, 0.25);
 	}
 
 	/* ── Prose ── */
