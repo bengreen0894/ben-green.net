@@ -1,4 +1,15 @@
 <script>
+	import { onMount } from 'svelte';
+
+	let fontsReady = false;
+	onMount(() => {
+		if (typeof document !== 'undefined' && document.fonts?.ready) {
+			document.fonts.ready.then(() => { fontsReady = true; });
+		} else {
+			fontsReady = true;
+		}
+	});
+
 	/** @type {import('svelte/action').Action<HTMLElement, {delay?: number, y?: number}>} */
 	function reveal(node, { delay = 0, y = 28 } = {}) {
 		node.style.opacity = '0';
@@ -43,11 +54,10 @@
 		const c = document.createElementNS(SVG_NS, 'circle');
 		c.setAttribute('cx', x);
 		c.setAttribute('cy', y);
-		c.setAttribute('r', 30);
-		c.setAttribute('fill', 'white');
+		c.setAttribute('r', 40);
+		c.setAttribute('fill', 'url(#trail-dot-grad)');
 		c.classList.add('trail-dot');
 		trailGroup.appendChild(c);
-		// Auto-cleanup once the fade completes
 		setTimeout(() => c.remove(), 450);
 	}
 
@@ -98,15 +108,16 @@
 
 <!-- ─────────────────────────────── HERO ─────────────────────────────── -->
 
-<!-- svelte-ignore a11y_no_static_element_interactions -->
-<!-- Trail mask: blurred white circles inside an SVG <mask> reveal the orange topo -->
+<!-- Trail mask: pre-blurred radial-gradient dots (no SVG filter) reveal the orange topo -->
 <svg class="filter-defs" width="0" height="0" aria-hidden="true">
 	<defs>
-		<filter id="trail-blur" x="-50%" y="-50%" width="200%" height="200%">
-			<feGaussianBlur stdDeviation="6" />
-		</filter>
+		<radialGradient id="trail-dot-grad" cx="50%" cy="50%" r="50%">
+			<stop offset="0%" stop-color="white" stop-opacity="1" />
+			<stop offset="55%" stop-color="white" stop-opacity="0.55" />
+			<stop offset="100%" stop-color="white" stop-opacity="0" />
+		</radialGradient>
 		<mask id="trail-mask" maskUnits="userSpaceOnUse" x="0" y="0" width="10000" height="10000">
-			<g bind:this={trailGroup} filter="url(#trail-blur)"></g>
+			<g bind:this={trailGroup}></g>
 		</mask>
 		<symbol id="topo-shape" viewBox="0 0 654 655" preserveAspectRatio="xMidYMid slice">
 			{@html topoInner}
@@ -129,7 +140,7 @@
 		<div class="hero-text">
 			<p class="hero-greeting">Hello, I'm</p>
 
-			<h1 class="hero-name">
+			<h1 class="hero-name" class:fonts-ready={fontsReady}>
 				<span class="name-solid">Ben</span>
 				<span class="name-outline">Green</span>
 			</h1>
@@ -432,18 +443,14 @@
 	.name-outline {
 		display: block;
 		margin-left: 0;
-		background-color: #2d2c2b;
-		background-image: url('/paper.svg');
-		background-size: 600px 600px;
-		background-blend-mode: multiply;
-		-webkit-background-clip: text;
-		background-clip: text;
-		color: transparent;
-		-webkit-text-fill-color: transparent;
+		color: #2d2c2b;
 	}
 
-	.name-solid  { animation: fadeUp 0.9s ease 0.45s both; }
-	.name-outline { animation: fadeUp 0.9s ease 0.45s both; }
+	.name-solid,
+	.name-outline { opacity: 0; }
+
+	.hero-name.fonts-ready .name-solid,
+	.hero-name.fonts-ready .name-outline { animation: fadeUp 0.9s ease both; }
 
 	.hero-rule {
 		width: clamp(280px, 46vw, 662px);

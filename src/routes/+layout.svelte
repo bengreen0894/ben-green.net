@@ -8,6 +8,9 @@
 	let cursorEl;
 
 	onMount(() => {
+		if (!window.matchMedia?.('(pointer: fine)').matches) return;
+		document.documentElement.classList.add('fine-pointer');
+
 		let pendingX = 0, pendingY = 0, rafScheduled = false;
 
 		const flush = () => {
@@ -59,8 +62,6 @@
 	];
 </script>
 
-<div class="paper" aria-hidden="true"></div>
-
 <div class="cursor" bind:this={cursorEl} aria-hidden="true"></div>
 
 <nav class:scrolled>
@@ -93,26 +94,14 @@
 <slot />
 
 <style>
-	:global(*, *::before, *::after) { cursor: none !important; }
+	:global(html.fine-pointer *),
+	:global(html.fine-pointer *::before),
+	:global(html.fine-pointer *::after) { cursor: none !important; }
 
-	/* Animated paper-grain texture across the whole page */
-	.paper {
-		position: fixed;
-		inset: 0;
-		z-index: 200;
-		pointer-events: none;
-		background-image: url('/paper.svg');
-		background-size: 1200px 1200px;
-		background-repeat: repeat;
-		opacity: 0.12;
-		mix-blend-mode: multiply;
-	}
+	.cursor { display: none; }
 
-	@media (prefers-reduced-motion: reduce) {
-		.paper { animation: none; }
-	}
-
-	.cursor {
+	:global(html.fine-pointer) .cursor {
+		display: block;
 		position: fixed;
 		left: 0;
 		top: 0;

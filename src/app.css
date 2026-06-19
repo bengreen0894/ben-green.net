@@ -82,7 +82,12 @@ html {
 }
 
 body {
-	background: var(--bg);
+	background-color: var(--bg);
+	background-image:
+		linear-gradient(rgba(240, 235, 225, 0.88), rgba(240, 235, 225, 0.88)),
+		url('/paper.svg');
+	background-size: auto, 1200px 1200px;
+	background-repeat: repeat;
 	color: var(--text);
 	font-family: var(--font-body);
 	font-size: 16px;
