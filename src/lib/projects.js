@@ -136,6 +136,43 @@ export const projects = [
 		]
 	},
 	{
+		slug: 'tangent',
+		title: 'Tangent',
+		category: 'Independent Project · Web App',
+		year: '2026',
+		description:
+			'Designed and built a Wikipedia rabbit-hole feed that shows not just the next article, but why it connects to the last one.',
+		bg: '#D6E2D4',
+		deco: '#1F3A2B',
+		heroEmbed: 'https://tangent.page/graph',
+		siteUrl: 'https://tangent.page/graph',
+		comingSoon: false,
+		role: 'Designer & Developer',
+		team: '707 Labs',
+		tools: ['Figma', 'Claude Code', 'SvelteKit'],
+		sections: [
+			{
+				type: 'overview',
+				text: "Tangent is an independent project under my LLC, 707 Labs. It turns Wikipedia into an exploration feed: a curated sequence of articles where every card explains how it relates to the one before — linked from, related to, or a deliberate surprise tangent. It's open source (MIT) and runs on live Wikipedia data."
+			},
+			{
+				type: 'prose',
+				label: 'Challenge',
+				text: "Wikipedia rabbit holes are one of the best ways to learn something by accident, but the experience is a wall of blue links with no sense of where you've been or why you're going there. Feeds make discovery effortless but strip out context. The goal was a feed that keeps the ease of scrolling while making the connections between ideas the point."
+			},
+			{
+				type: 'prose',
+				label: 'Approach',
+				text: "Each article card leads with its relationship to the previous one, so the path through topics stays legible. A precomputed atlas of roughly 2,000 curated articles keeps the feed away from obscure stubs and works offline, while live Wikipedia APIs supply fresh summaries, images, and links. Recommendations weigh likes and dwell time but use softmax-weighted selection rather than deterministic picks, balancing coherence with surprise. A full article reader preserves Wikipedia's formatting, media, and sources."
+			},
+			{
+				type: 'prose',
+				label: 'My Role',
+				text: 'I designed the product and interface and built it in code with SvelteKit (Svelte 5), TypeScript, Tailwind CSS 4, and Cloudflare Workers.'
+			}
+		]
+	},
+	{
 		slug: 'usbank-ach-payments',
 		title: 'U.S. Bank — ACH Payments',
 		category: 'Fintech · Web & Mobile',
